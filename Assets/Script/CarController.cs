@@ -162,7 +162,7 @@ public class CarController : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-
+        // 아스팔트 위
         if (other.CompareTag("Asphalt"))
         {
             isOnRoad = true;
@@ -176,6 +176,7 @@ public class CarController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        // 도로 위인지
         if (other.CompareTag("Asphalt"))
         {
             isOnRoad = false;

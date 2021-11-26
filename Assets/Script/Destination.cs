@@ -22,13 +22,17 @@ public class Destination : MonoBehaviour
     {
         
     }
+    // 플레이어 배달완료
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             if (p.hasCandy == false) return;
+            // 사탕가게 캔디
             candy.SetActive(true);
+            // 배달지 비활성화
             this.gameObject.SetActive(false);
+            // 사탕 소지 false
             p.hasCandy = false;
         }
     }

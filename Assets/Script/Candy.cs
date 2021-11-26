@@ -22,13 +22,17 @@ public class Candy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 사탕 돌아가게
         transform.Rotate(new Vector3(0, rotSpeed * Time.deltaTime, 0));
     }
     private void OnTriggerEnter(Collider other)
     {
+        // 플레이어 닿으면
         if (other.CompareTag("Player"))
         {
+            // 사탕 소지여부 
             p.hasCandy = true;
+            // 사탕 끄기
             this.gameObject.SetActive(false);
         }
     }

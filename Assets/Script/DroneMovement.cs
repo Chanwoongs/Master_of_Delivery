@@ -7,35 +7,35 @@ public class DroneMovement : MonoBehaviour
 {
     Rigidbody ourDrone;
 
-    // µå·ÐÀÇ ºñÇà Èû
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     public float upForce;
 
-    // µå·Ð ¾ÕµÚ ¿òÁ÷ÀÓ
+    // ï¿½ï¿½ï¿½ ï¿½Õµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private float movementForwardSpeed = 500.0f;
     private float tiltAmountForward = 0;
     private float tiltVelocityForward;
 
-    // µå·Ð È¸Àü
+    // ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
     private float wantedYRotation;
     public float currentYRotation;
     private float rotateAmountByKeys = 2.5f;
     private float rotationYVelocity;
 
-    // µå·Ð ¼Óµµ Á¦ÇÑ
+    // ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
     private Vector3 velocityToSmoothDampToZero;
 
-    // µå·Ð ÁÂ¿ì ¿òÁ÷ÀÓ
+    // ï¿½ï¿½ï¿½ ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private float sideMovementAmount = 300.0f;
     private float tiltAmountSide;
     private float tiltVelocitySide;
 
-    // È¿°úÀ½
+    // È¿ï¿½ï¿½ï¿½ï¿½
     private AudioSource droneSound;
 
     void Awake()
     {
         ourDrone = GetComponent<Rigidbody>();
-        droneSound = gameObject.transform.FindChild("DroneSound").GetComponent<AudioSource>();
+        droneSound = gameObject.transform.Find("DroneSound").GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -47,9 +47,9 @@ public class DroneMovement : MonoBehaviour
         Swerve();
         DroneSound();
 
-        // µå·Ð¿¡°Õ Ç×»ó ÈûÀÌ ÀÛ¿ë
+        // ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½ ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¿ï¿½
         ourDrone.AddRelativeForce(Vector3.up * upForce);
-        // µå·Ð ¾ÕµÚ È¸Àü
+        // ï¿½ï¿½ï¿½ ï¿½Õµï¿½ È¸ï¿½ï¿½
         ourDrone.rotation = Quaternion.Euler(new Vector3(tiltAmountForward, currentYRotation, tiltAmountSide));
     }
 
@@ -58,44 +58,44 @@ public class DroneMovement : MonoBehaviour
         droneSound.pitch = 1 + (ourDrone.velocity.magnitude / 20);
     }
 
-    // »ó½Â ÇÏ°­ ¹× ¶°ÀÖ°Ô ÇÏ´Â Èû
+    // ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½
     private void MovementUpDown()
     {
-        // ¾ÕµÚÁÂ¿ì ÀÔ·ÂÀÌ ÀÖÀ» ¶§
+        // ï¿½Õµï¿½ï¿½Â¿ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.2f || Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
         {
-            // »ó½Â ¶Ç´Â ÇÏ°­ÇÒ ¶§
+            // ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½
             if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl))
             {
-                // ¼Óµµ Á¦ÇÑ
+                // ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
                 ourDrone.velocity = ourDrone.velocity;
             }
-            // ¾ÕµÚÁÂ¿ì ¿òÁ÷ÀÓ¸¸ ÀÖÀ»¶§
+            // ï¿½Õµï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
             {
                 ourDrone.velocity = new Vector3(ourDrone.velocity.x, Mathf.Lerp(ourDrone.velocity.y, 0, Time.deltaTime * 5), ourDrone.velocity.z);
                 upForce = 281;
             }
-            // ¾ÕµÚÁÂ¿ì¿Í È¸ÀüÀ» °°ÀÌ ´­·¶À» ¶§
+            // ï¿½Õµï¿½ï¿½Â¿ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl) && (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E)))
             {
                 ourDrone.velocity = new Vector3(ourDrone.velocity.x, Mathf.Lerp(ourDrone.velocity.y, 0, Time.deltaTime * 5), ourDrone.velocity.z);
                 upForce = 110;
             }
-            // È¸ÀüÅ°¸¦ ´­·¶À» ¶§
+            // È¸ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
             {
                 upForce = 410;
             }
         }
 
-        // ÁÂ¿ì Å°¸¸ ´­·¶À» ¶§
+        // ï¿½Â¿ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (Mathf.Abs(Input.GetAxis("Vertical")) < 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
         {
             upForce = 135;
         }
 
-        // µå·Ð »ó½Â
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (Input.GetKey(KeyCode.Space))
         {
             upForce = 450;
@@ -104,52 +104,52 @@ public class DroneMovement : MonoBehaviour
                 upForce = 500;
             }
         }
-        // µå·Ð ÇÏ°­
+        // ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½
         else if (Input.GetKey(KeyCode.LeftControl))
         {
             upForce = -200;
         }
-        // ÀÔ·Â ¾øÀ» ½Ã µå·Ð À§Ä¡ À¯Áö
+        // ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
         else if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl) && (Mathf.Abs(Input.GetAxis("Vertical")) < 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) < 0.2f))
         {
             upForce = 98.1f;
         }
     }
 
-    // ¾ÕµÚ·Î ±â¿ï±â
+    // ï¿½ÕµÚ·ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void MovementForward()
     {
         if (Input.GetAxis("Vertical") != 0)
         {
-            // ¿ÀºêÁ§Æ® ·ÎÄÃ ÁÂÇ¥ ±âÁØÀ¸·Î ¾ÕÀ¸·Î ÀÌµ¿ 
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ 
             ourDrone.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * movementForwardSpeed);
-            // ¾ÕÂÊÀ¸·Î ºÎµå·´°Ô ±â¿ïÀÌ±â
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµå·´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì±ï¿½
             tiltAmountForward = Mathf.SmoothDamp(tiltAmountForward, 20 * Input.GetAxis("Vertical"), ref tiltVelocityForward, 0.1f);
         }
     }
 
-    // È¸Àü
+    // È¸ï¿½ï¿½
     private void Rotation()
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            // ¿ÞÂÊ È¸Àü
+            // ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
             wantedYRotation -= rotateAmountByKeys;
         }
         if (Input.GetKey(KeyCode.E))
         {
-            // ¿À¸¥ÂÊ È¸Àü
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
             wantedYRotation += rotateAmountByKeys;
         }
 
-        // ºÎµå·´°Ô È¸Àü
+        // ï¿½Îµå·´ï¿½ï¿½ È¸ï¿½ï¿½
         currentYRotation = Mathf.SmoothDamp(currentYRotation, wantedYRotation, ref rotationYVelocity, 0.25f);
     }
 
-    // ¼Óµµ Á¦ÇÑ
+    // ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
     private void ClampingSpeedValues()
     {
-        // ¾ÕÂÊÀ¸·Î ±â¿ïÀÏ ¶§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
         {
             ourDrone.velocity = Vector3.ClampMagnitude(ourDrone.velocity, Mathf.Lerp(ourDrone.velocity.magnitude, 10.0f, Time.deltaTime * 5f));
@@ -158,7 +158,7 @@ public class DroneMovement : MonoBehaviour
         {
             ourDrone.velocity = Vector3.ClampMagnitude(ourDrone.velocity, Mathf.Lerp(ourDrone.velocity.magnitude, 10.0f, Time.deltaTime * 5f));
         }
-        // µÚ·Î ±â¿ïÀÏ ¶§
+        // ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (Mathf.Abs(Input.GetAxis("Vertical")) < 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
         {
             ourDrone.velocity = Vector3.ClampMagnitude(ourDrone.velocity, Mathf.Lerp(ourDrone.velocity.magnitude, 5.0f, Time.deltaTime * 5f));
@@ -169,20 +169,20 @@ public class DroneMovement : MonoBehaviour
         }
     }
 
-    // ÁÂ¿ì ±â¿ïÀÌ±â
+    // ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ì±ï¿½
     private void Swerve()
     {
-        // ÁÂ¿ì ÀÔ·ÂÀ» ¹ÞÀ¸¸é
+        // ï¿½Â¿ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
         {
-            // µå·Ð ÀÌµ¿
+            // ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             ourDrone.AddRelativeForce(Vector3.right * Input.GetAxis("Horizontal") * sideMovementAmount);
-            // µå·Ð ±â¿ï±â °¢µµ
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             tiltAmountSide = Mathf.SmoothDamp(tiltAmountSide, -20 * Input.GetAxis("Horizontal"), ref tiltVelocitySide, 0.1f);
         }
         else
         {
-            // ¾È ±â¿ï¾îÁü
+            // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             tiltAmountSide = Mathf.SmoothDamp(tiltAmountSide, 0, ref tiltVelocitySide, 0.1f);
         }
     }

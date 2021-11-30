@@ -16,6 +16,7 @@ TagManager:
   - MiniMap
   - PlayerCamera
   - Drone
+  - Path
   layers:
   - Default
   - TransparentFX

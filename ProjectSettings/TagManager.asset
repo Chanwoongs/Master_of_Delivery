@@ -15,6 +15,7 @@ TagManager:
   - Section3
   - MiniMap
   - PlayerCamera
+  - Drone
   layers:
   - Default
   - TransparentFX

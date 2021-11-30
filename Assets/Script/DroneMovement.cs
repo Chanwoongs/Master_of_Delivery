@@ -17,7 +17,7 @@ public class DroneMovement : MonoBehaviour
 
     // 드론 회전
     private float wantedYRotation;
-    private float currentYRotation;
+    public float currentYRotation;
     private float rotateAmountByKeys = 2.5f;
     private float rotationYVelocity;
 
@@ -29,9 +29,13 @@ public class DroneMovement : MonoBehaviour
     private float tiltAmountSide;
     private float tiltVelocitySide;
 
+    // 효과음
+    private AudioSource droneSound;
+
     void Awake()
     {
         ourDrone = GetComponent<Rigidbody>();
+        droneSound = gameObject.transform.FindChild("DroneSound").GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -41,6 +45,7 @@ public class DroneMovement : MonoBehaviour
         Rotation();
         ClampingSpeedValues();
         Swerve();
+        DroneSound();
 
         // 드론에겐 항상 힘이 작용
         ourDrone.AddRelativeForce(Vector3.up * upForce);
@@ -48,13 +53,56 @@ public class DroneMovement : MonoBehaviour
         ourDrone.rotation = Quaternion.Euler(new Vector3(tiltAmountForward, currentYRotation, tiltAmountSide));
     }
 
+    private void DroneSound()
+    {
+        droneSound.pitch = 1 + (ourDrone.velocity.magnitude / 20);
+    }
+
     // 상승 하강 및 떠있게 하는 힘
     private void MovementUpDown()
     {
+        // 앞뒤좌우 입력이 있을 때
+        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.2f || Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
+        {
+            // 상승 또는 하강할 때
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl))
+            {
+                // 속도 제한
+                ourDrone.velocity = ourDrone.velocity;
+            }
+            // 앞뒤좌우 움직임만 있을때
+            if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
+            {
+                ourDrone.velocity = new Vector3(ourDrone.velocity.x, Mathf.Lerp(ourDrone.velocity.y, 0, Time.deltaTime * 5), ourDrone.velocity.z);
+                upForce = 281;
+            }
+            // 앞뒤좌우와 회전을 같이 눌렀을 때
+            if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl) && (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E)))
+            {
+                ourDrone.velocity = new Vector3(ourDrone.velocity.x, Mathf.Lerp(ourDrone.velocity.y, 0, Time.deltaTime * 5), ourDrone.velocity.z);
+                upForce = 110;
+            }
+            // 회전키를 눌렀을 때
+            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
+            {
+                upForce = 410;
+            }
+        }
+
+        // 좌우 키만 눌렀을 때
+        if (Mathf.Abs(Input.GetAxis("Vertical")) < 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
+        {
+            upForce = 135;
+        }
+
         // 드론 상승
         if (Input.GetKey(KeyCode.Space))
         {
             upForce = 450;
+            if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
+            {
+                upForce = 500;
+            }
         }
         // 드론 하강
         else if (Input.GetKey(KeyCode.LeftControl))
@@ -62,7 +110,7 @@ public class DroneMovement : MonoBehaviour
             upForce = -200;
         }
         // 입력 없을 시 드론 위치 유지
-        else if (!Input.GetKey(KeyCode.I) && !Input.GetKey(KeyCode.K))
+        else if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftControl) && (Mathf.Abs(Input.GetAxis("Vertical")) < 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) < 0.2f))
         {
             upForce = 98.1f;
         }
@@ -85,13 +133,16 @@ public class DroneMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
         {
+            // 왼쪽 회전
             wantedYRotation -= rotateAmountByKeys;
         }
         if (Input.GetKey(KeyCode.E))
         {
+            // 오른쪽 회전
             wantedYRotation += rotateAmountByKeys;
         }
 
+        // 부드럽게 회전
         currentYRotation = Mathf.SmoothDamp(currentYRotation, wantedYRotation, ref rotationYVelocity, 0.25f);
     }
 
@@ -118,15 +169,20 @@ public class DroneMovement : MonoBehaviour
         }
     }
 
+    // 좌우 기울이기
     private void Swerve()
     {
+        // 좌우 입력을 받으면
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
         {
+            // 드론 이동
             ourDrone.AddRelativeForce(Vector3.right * Input.GetAxis("Horizontal") * sideMovementAmount);
+            // 드론 기울기 각도
             tiltAmountSide = Mathf.SmoothDamp(tiltAmountSide, -20 * Input.GetAxis("Horizontal"), ref tiltVelocitySide, 0.1f);
         }
         else
         {
+            // 안 기울어짐
             tiltAmountSide = Mathf.SmoothDamp(tiltAmountSide, 0, ref tiltVelocitySide, 0.1f);
         }
     }

@@ -1231,6 +1231,7 @@ GameObject:
   - component: {fileID: 4507548481028570768}
   - component: {fileID: 4507548481033513480}
   - component: {fileID: 4507548481028296185}
+  - component: {fileID: 412641410252990298}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Drone
@@ -1255,6 +1256,7 @@ Transform:
   - {fileID: 4507548481028515630}
   - {fileID: 4507548481028595344}
   - {fileID: 8665188541716342310}
+  - {fileID: 5362854413902842687}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1288,6 +1290,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upForce: 0
   currentYRotation: 0
+--- !u!65 &412641410252990298
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507548481028296184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 0.5, z: 1.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4507548481028297234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1693,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4507548481028536320}
-  - component: {fileID: 4507548481028308391}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1715,19 +1729,6 @@ Transform:
   m_Father: {fileID: 4507548481028570768}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &4507548481028308391
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4507548481028308390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4507548481028308662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,3 +2950,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &9159342853272959931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5362854413902842687}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5362854413902842687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159342853272959931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.409}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4507548481028570768}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

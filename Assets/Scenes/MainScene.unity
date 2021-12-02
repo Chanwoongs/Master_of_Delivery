@@ -5128,7 +5128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -6332,7 +6332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -6505,7 +6505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section1
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -14927,7 +14927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section1
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -17586,7 +17586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -19051,7 +19051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section1
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -21801,14 +21801,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b25d8adf1f53074cabcfc88f58df184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sector1: {fileID: 1139412152}
-  sector2: {fileID: 1634831532}
-  sector3: {fileID: 1875765875}
   timeSlider: {fileID: 1645682536}
   timeTxt: {fileID: 748259423}
+  time: 0
   candy1: {fileID: 2048907872}
   candy2: {fileID: 1431216219}
-  time: 0
+  clearedFirst:
+    m_PersistentCalls:
+      m_Calls: []
+  clearedSecond:
+    m_PersistentCalls:
+      m_Calls: []
+  clearedThird:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &827782131
 Transform:
   m_ObjectHideFlags: 0
@@ -23501,7 +23507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -26835,7 +26841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -28639,7 +28645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -29519,7 +29525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -35562,7 +35568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section1
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -49012,7 +49018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -49603,7 +49609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -50819,7 +50825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size
@@ -51816,7 +51822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1319104102522538441, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_TagString
-      value: Section3
+      value: Section2
       objectReference: {fileID: 0}
     - target: {fileID: 2175283608965511121, guid: 47f883308369633468afc745c2a9f556, type: 3}
       propertyPath: m_Materials.Array.size

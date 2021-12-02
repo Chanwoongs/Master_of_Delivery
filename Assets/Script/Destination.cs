@@ -12,11 +12,7 @@ public class Destination : MonoBehaviour
         p = GameObject.Find("Player").GetComponent<Player>();
         candy = GameObject.Find("Candy");
     }
-    private void OnDisable()
-    {
-        p.interactAudio.clip = p.deliverd;
-        p.interactAudio.Play();
-    }
+
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +30,9 @@ public class Destination : MonoBehaviour
             this.gameObject.SetActive(false);
             // 사탕 소지 false
             p.hasCandy = false;
+            // 효과음 재생
+            p.interactAudio.clip = p.deliverd;
+            p.interactAudio.Play();
         }
     }
 }

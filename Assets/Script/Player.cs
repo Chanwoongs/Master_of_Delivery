@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         {
             m_jumpInput = true;
         }
-        if (Input.GetKeyDown(KeyCode.M)) 
+        if (Input.GetKeyDown(KeyCode.Tab)) 
         {
             if (!miniMap.activeSelf)
             {

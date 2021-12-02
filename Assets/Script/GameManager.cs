@@ -18,129 +18,126 @@ public class GameManager : MonoBehaviour
     public Image candy1;
     public Image candy2;
 
-    // 1미션 배달 영역
-    private GameObject[] desSector1;
-    private GameObject[] desSector2;
-    private GameObject[] desSector3;
-
-    // 1미션 배달 클리어 이벤트
-    public UnityEvent clearedFirst;
-    public UnityEvent clearedSecond;
-    public UnityEvent clearedThird;
-
+    // 배달 완료 Flags 
+    // -1 -> 초기상태, 0 -> 배달 X, 1 -> 배달 O
+    [SerializeField] public int isDeliverd1;
+    [SerializeField] public int isDeliverd2;
+    [SerializeField] public int isDeliverd3;
+    [SerializeField] public int isDeliverd4;
+    [SerializeField] public int isDeliverd5;
+    [SerializeField] public int isDeliverd6;
+    [SerializeField] public int isDeliverd7;
+    
     // 배달지용 난수 생성
     private int randNum1;
     private int randNum2;
     private int randNum3;
+    private int randNum4;
+    private int randNum5;
+    private int randNum6;
+    private int randNum7;
 
     void Awake()
     {
         // 초기 시간 설정
-        time = 90.0f;
+        time = 180.0f;
         // 초기 최대 시간 설정
         timeSlider.maxValue = time;
 
-        // 첫번째 영역 배달지 선정
-        desSector1 = GameObject.FindGameObjectsWithTag("Section1");
-        randNum1 = Random.Range(0, desSector1.Length - 1);
-        // 두번째 영역 배달지 선정
-        desSector2 = GameObject.FindGameObjectsWithTag("Section2");
-        randNum2 = Random.Range(0, desSector2.Length - 1);
-        // 세번째 영역 배달지 선정
-        desSector3 = GameObject.FindGameObjectsWithTag("Section3");
-        randNum3 = Random.Range(0, desSector3.Length - 1);
+        // 배달지 난수 생성
+        randNum1 = Random.Range(0, 3);
+        randNum2 = Random.Range(0, 39);
+        randNum3 = Random.Range(0, 19);      
+        randNum4 = Random.Range(0, 12);      
+        randNum5 = Random.Range(0, 19);      
+        randNum6 = Random.Range(0, 10);      
+        randNum7 = Random.Range(0, 11);      
+    }
 
-        Debug.Log(desSector1.Length);
+    private void Start()
+    {
+        isDeliverd1 = 0;
+        isDeliverd2 = -1;
+        isDeliverd3 = -1;
+        isDeliverd4 = -1;
+        isDeliverd5 = -1;
+        isDeliverd6 = -1;
+        isDeliverd7 = -1;
 
-        // 모든 배달지 비활성화
-        setAllDestinationFalse();
-
-        // 첫번째 배달지 활성화
-        setFirstDestination();
+        // 첫번째 영역 배달지 활성화
+        GameObject.Find("Section1").transform.GetChild(randNum1).gameObject.SetActive(true);
     }
 
     void Update()
     {
-        //gameClear();
+        gameClear();
         updateTime();
+        updateDestination();
     }
-    
-    // 모든 배달지 비활성화
-    private void setAllDestinationFalse()
+
+    // 배달지 업데이트
+    private void updateDestination()
     {
-        for (int i = 0; i < desSector1.Length; i++)
+        if (isDeliverd2 == 0)
         {
-            desSector1[i].SetActive(false);
+            activate2ndDestination();
         }
-        for (int i = 0; i < desSector2.Length; i++)
+        if (isDeliverd3 == 0)
         {
-            desSector2[i].SetActive(false);
+            activate3rdDestination();
         }
-        for (int i = 0; i < desSector3.Length; i++)
+        if (isDeliverd4 == 0)
         {
-            desSector3[i].SetActive(false);
+            activate4thDestination();
+        }
+        if (isDeliverd5 == 0)
+        {
+            activate5thDestination();
+        }
+        if (isDeliverd6 == 0)
+        {
+            activate6thDestination();
+        }
+        if (isDeliverd7 == 0)
+        {
+            activate7thDestination();
         }
     }
 
-    // 첫번째 배달지 설정
-    private void setFirstDestination()
+    // 두번째 배달지 활성화
+    private void activate2ndDestination()
     {
-        desSector1[randNum1].SetActive(true);
+        GameObject.Find("Section2").transform.GetChild(randNum2).gameObject.SetActive(true);
     }
-
-    // 두번째 배달지 설정
-    private void setSecondDestination()
-    {
-        for (int i = 0; i < desSector2.Length; i++)
-        {
-            if (i == randNum2) continue;
-            desSector2[i].SetActive(false);
-        }
-    }
-
     // 세번째 배달지 설정
-    private void setThirdDestination()
+    private void activate3rdDestination()
     {
-        for (int i = 0; i < desSector3.Length; i++)
-        {
-            if (i == randNum3) continue;
-            desSector3[i].SetActive(false);
-        }
+        GameObject.Find("Section3").transform.GetChild(randNum3).gameObject.SetActive(true);
     }
+    // 네번째 배달지 설정 (햄버거 배달지)
+    private void activate4thDestination()
+    {
+        GameObject.Find("Section4").transform.GetChild(randNum4).gameObject.SetActive(true);
+    }
+    // 다섯번째 배달지 설정 (햄버거 배달지)
+    private void activate5thDestination()
+    {
+        GameObject.Find("Section5").transform.GetChild(randNum5).gameObject.SetActive(true);
+    }
+    // 세번째 배달지 설정 (사탕 배달지)
+    private void activate6thDestination()
+    {
+        GameObject.Find("Section6").transform.GetChild(randNum6).gameObject.SetActive(true);
+    }
+    // 세번째 배달지 설정 (사탕 배달지)
+    private void activate7thDestination()
+    {
+        GameObject.Find("Section7").transform.GetChild(randNum7).gameObject.SetActive(true);
+    }
+
     private void gameClear()
     {
-        int count = 0;
-
-        for (int i = 0; i < desSector1.Length; i++)
-        {
-            if (desSector1[i].activeSelf == true)
-            {
-                count++;
-            }
-        }
-        for (int i = 0; i < desSector2.Length; i++)
-        {
-            if (desSector2[i].activeSelf == true)
-            {
-                count++;
-            }
-        }
-        for (int i = 0; i < desSector3.Length; i++)
-        {
-            if (desSector3[i].activeSelf == true)
-            {
-                count++;
-            }
-        }
-        if (count == 2)
-        {
-            candy1.enabled = false;
-        }
-        else if (count == 1)
-        {
-            candy2.enabled = false;
-        }
-        else if (count == 0)
+        if (isDeliverd7 == 1)
         {
             Debug.Log("GAME CLEAR");
             SceneManager.LoadScene("ClearScene");

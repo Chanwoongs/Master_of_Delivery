@@ -14,8 +14,7 @@ public class Item : MonoBehaviour
     }
     private void OnDisable()
     {
-        p.interactAudio.clip = p.deliverd;
-        p.interactAudio.Play();
+       
     }
 
     // Update is called once per frame
@@ -32,7 +31,10 @@ public class Item : MonoBehaviour
                 gm.timeSlider.maxValue = gm.time + 10.0f;
             }
             gm.time += 10.0f;
+
             this.gameObject.SetActive(false);
+            p.interactAudio.clip = p.deliverd;
+            p.interactAudio.Play();
         }
     }
 }

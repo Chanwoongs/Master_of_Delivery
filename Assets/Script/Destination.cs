@@ -6,11 +6,14 @@ public class Destination : MonoBehaviour
 {
     Player p;
     GameObject candy;
+    GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
         p = GameObject.Find("Player").GetComponent<Player>();
         candy = GameObject.Find("Candy");
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -21,18 +24,56 @@ public class Destination : MonoBehaviour
     // 플레이어 배달완료
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Drone"))
         {
             if (p.hasCandy == false) return;
             // 사탕가게 캔디
             candy.SetActive(true);
-            // 배달지 비활성화
-            this.gameObject.SetActive(false);
+           
             // 사탕 소지 false
             p.hasCandy = false;
             // 효과음 재생
             p.interactAudio.clip = p.deliverd;
             p.interactAudio.Play();
+
+            // 배달지 변경
+            if (gm.isDeliverd1 == 0)
+            {
+                gm.isDeliverd1 = 1;
+                gm.isDeliverd2 = 0;
+            }
+            else if (gm.isDeliverd2 == 0)
+            {
+                gm.isDeliverd2 = 1;
+                gm.isDeliverd3 = 0;
+            }
+            else if (gm.isDeliverd3 == 0)
+            {
+                gm.isDeliverd3 = 1;
+                gm.isDeliverd4 = 0;
+            }
+            else if (gm.isDeliverd4 == 0)
+            {
+                gm.isDeliverd4 = 1;
+                gm.isDeliverd6 = 0;
+            }
+            else if (gm.isDeliverd6 == 0)
+            {
+                gm.isDeliverd6 = 1;
+                gm.isDeliverd5 = 0;
+            }
+            else if (gm.isDeliverd5 == 0)
+            {
+                gm.isDeliverd5 = 1;
+                gm.isDeliverd7 = 0;
+            }
+            else if (gm.isDeliverd7 == 0)
+            {
+                gm.isDeliverd7 = 1;
+            }
+
+            // 배달지 비활성화
+            this.gameObject.SetActive(false);
         }
     }
 }

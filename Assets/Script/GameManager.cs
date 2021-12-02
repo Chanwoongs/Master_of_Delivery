@@ -37,6 +37,12 @@ public class GameManager : MonoBehaviour
     private int randNum6;
     private int randNum7;
 
+    public GameObject playerCamera;
+    public GameObject secondLand;
+    public GameObject secondLandCamera;
+    Vector3 target;
+    public UnityEvent toSecondLand;
+
     void Awake()
     {
         // 초기 시간 설정
@@ -64,6 +70,9 @@ public class GameManager : MonoBehaviour
         isDeliverd6 = -1;
         isDeliverd7 = -1;
 
+        secondLand.transform.position = new Vector3(secondLand.transform.position.x, -200f, secondLand.transform.position.z);
+        target = new Vector3(secondLand.transform.position.x, 0f, secondLand.transform.position.z);
+
         // 첫번째 영역 배달지 활성화
         GameObject.Find("Section1").transform.GetChild(randNum1).gameObject.SetActive(true);
     }
@@ -88,6 +97,12 @@ public class GameManager : MonoBehaviour
         }
         if (isDeliverd4 == 0)
         {
+            secondLand.transform.position = Vector3.MoveTowards(secondLand.transform.position, target, 0.1f);
+            if (toSecondLand != null)
+            {
+                toSecondLand.Invoke();
+            }
+            toSecondLand = null;
             activate4thDestination();
         }
         if (isDeliverd5 == 0)
@@ -143,6 +158,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
     }
+
     // 시간 업데이트
     private void updateTime()
     {
@@ -158,5 +174,19 @@ public class GameManager : MonoBehaviour
             Debug.Log("TIME OUT");
             SceneManager.LoadScene("FailScene");
         }
+    }
+
+    public void changeCameraToSecondLand()
+    {
+        secondLand.transform.position = new Vector3(secondLand.transform.position.x, -40f, secondLand.transform.position.z);
+        playerCamera.SetActive(false);
+        secondLandCamera.SetActive(true);
+
+        Invoke("changeCameraToPlayer", 5.0f);
+    }
+    private void changeCameraToPlayer()
+    {
+        playerCamera.SetActive(true);
+        secondLandCamera.SetActive(false);
     }
 }

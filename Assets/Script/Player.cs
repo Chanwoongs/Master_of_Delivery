@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     public AudioClip getCandy;
     public AudioClip deliverd;
     public AudioClip boom;
-
+    GameManager gameManager;
 
     private void Awake()
     {
@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
         candy = GameObject.Find("PlayerCandy");
         cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
         m_jumpInput = false;
+        gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
     private void Update()
     {
@@ -171,7 +172,8 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (cc.isDriving) return;
+                if (cc.isDriving)
+                    return;
 
                 cc.carStartAS.Play();
                 
@@ -181,7 +183,6 @@ public class Player : MonoBehaviour
                 player.transform.position = playerCar.transform.position;
                 player.transform.localScale = new Vector3(0, 0, 0);
                 player.GetComponent<Animator>().enabled = false;
-
                 Invoke("setDrivingTrue", 0.2f);
             }
         }
@@ -190,6 +191,7 @@ public class Player : MonoBehaviour
     private void setDrivingTrue()
     {
         cc.isDriving = true;
+        gameManager.setIsInCar(true);  // 차타고 0.2초뒤에 움직이니까 그 때 기름 감소하도록
     }
 
     private void FixedUpdate()

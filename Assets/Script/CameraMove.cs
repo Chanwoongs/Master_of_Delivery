@@ -11,6 +11,7 @@ public class CameraMove : MonoBehaviour
     private Quaternion camRotation;
     private RaycastHit hit;
     private Vector3 cameraOffset;
+    bool isAction = true;
 
     private void Start()
     {
@@ -19,6 +20,9 @@ public class CameraMove : MonoBehaviour
     }
     private void Update()
     {
+        if (!isAction)
+            return;
+
         camRotation.x += Input.GetAxis("Mouse Y") * cameraSoothingFactor * (-1);
         camRotation.y += Input.GetAxis("Mouse X") * cameraSoothingFactor;
 
@@ -34,5 +38,10 @@ public class CameraMove : MonoBehaviour
         {
             playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, cameraOffset, Time.deltaTime);
         }
+    }
+
+    public void setIsAction(bool action)
+    {
+        isAction = action;
     }
 }

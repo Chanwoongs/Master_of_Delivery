@@ -14,6 +14,15 @@ public class GameManager : MonoBehaviour
     // 남은 시간
     public float time;
 
+    // 남은 Oil UI
+    public Slider oilSlider;
+    // 남은 오일 Text
+    public Text oilTxt;
+    // 현재 남은 오일 상태
+    float remainingOil;
+    int currentOil;
+    bool isInCar = false;
+
     // 남은 사탕 UI
     public Image candy1;
     public Image candy2;
@@ -43,12 +52,17 @@ public class GameManager : MonoBehaviour
     Vector3 target;
     public UnityEvent toSecondLand;
 
+    CarController cc;
     void Awake()
     {
         // 초기 시간 설정
         time = 180.0f;
         // 초기 최대 시간 설정
         timeSlider.maxValue = time;
+        // 초기 오일 설정
+        remainingOil = 100.0f;
+        // 최대 오일 게이지 설정
+        oilSlider.maxValue = remainingOil;
 
         // 배달지 난수 생성
         randNum1 = Random.Range(0, 3);
@@ -75,6 +89,7 @@ public class GameManager : MonoBehaviour
 
         // 첫번째 영역 배달지 활성화
         GameObject.Find("Section1").transform.GetChild(randNum1).gameObject.SetActive(true);
+        cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
     }
 
     void Update()
@@ -82,6 +97,11 @@ public class GameManager : MonoBehaviour
         gameClear();
         updateTime();
         updateDestination();
+
+        if(isInCar)
+        {
+            updateOilgaGage();
+        }
     }
 
     // 배달지 업데이트
@@ -167,13 +187,33 @@ public class GameManager : MonoBehaviour
         // 시간 슬라이더 반영
         timeSlider.value = time;
         // 시간 출력
-        timeTxt.text = time.ToString("F2") + "S";
+        timeTxt.text = time.ToString("F1") + "S";
         // 시간이 다되면 게임 오버
         if (time < 0f)
         {
             Debug.Log("TIME OUT");
             SceneManager.LoadScene("FailScene");
         }
+    }
+
+    public void updateOilgaGage()
+    {
+        remainingOil -= Time.deltaTime;
+        oilSlider.value = remainingOil;
+        currentOil = (int)remainingOil;
+        oilTxt.text = currentOil.ToString() + "%";
+
+        if (remainingOil < 0f)
+        {
+            remainingOil = 0; 
+            cc.setMotorForce(0);  // 자동차의 힘을 0으로
+            cc.isDriving = false;  // 차 움직임을 false
+        }
+    }
+
+    public void setIsInCar(bool inCar)
+    {
+        isInCar = inCar;
     }
 
     public void changeCameraToSecondLand()
@@ -188,5 +228,17 @@ public class GameManager : MonoBehaviour
     {
         playerCamera.SetActive(true);
         secondLandCamera.SetActive(false);
+    }
+
+    public float getRemainingOil()
+    {
+        return remainingOil;
+    }
+
+    public void setRemainingOil(float value)
+    {
+        remainingOil += value;
+        if (remainingOil > oilSlider.maxValue)
+            remainingOil = oilSlider.maxValue +1;
     }
 }

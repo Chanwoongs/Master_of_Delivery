@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7158094618736166383}
   - component: {fileID: 5892241365228238302}
   - component: {fileID: 7504233249183366948}
-  - component: {fileID: 5576075751172145071}
+  - component: {fileID: 8449227833139940583}
   m_Layer: 0
   m_Name: QuestZone2Blue
   m_TagString: Untagged
@@ -4815,7 +4815,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.045
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5576075751172145071
+--- !u!114 &8449227833139940583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4824,7 +4824,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2704872401647822892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23629b44aabbbdc49bfb7825981029a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 749f26f8d70121848aa1377b3a26d4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4529882898794772394

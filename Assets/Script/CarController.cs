@@ -34,7 +34,7 @@ public class CarController : MonoBehaviour
     public AudioSource forwardAS;
 
     Player p;
-    private Rigidbody rb;
+    public Rigidbody rb;
     public bool isDriving;
     [SerializeField] private bool isOnRoad;
 

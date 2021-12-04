@@ -7,6 +7,9 @@ public class DroneMovement : MonoBehaviour
 {
     Rigidbody ourDrone;
 
+    public GameObject pickableDrone;
+    PickableDrone pd;
+
     // 위로 뜨는 힘
     public float upForce;
 
@@ -36,10 +39,13 @@ public class DroneMovement : MonoBehaviour
     {
         ourDrone = GetComponent<Rigidbody>();
         droneSound = gameObject.transform.Find("DroneSound").GetComponent<AudioSource>();
+        pd = pickableDrone.GetComponent<PickableDrone>();
     }
 
     private void FixedUpdate()
     {
+        if (!pd.isControlling) return;
+
         MovementUpDown();
         MovementForward();
         Rotation();
@@ -57,7 +63,15 @@ public class DroneMovement : MonoBehaviour
 
     private void DroneSound()
     {
-        droneSound.pitch = 1 + (ourDrone.velocity.magnitude / 20);
+        if (pd.isControlling)
+        {
+            droneSound.mute = false;
+            droneSound.pitch = 1 + (ourDrone.velocity.magnitude / 20);
+        }
+        else if (!pd.isControlling)
+        {
+            droneSound.mute = true;
+        }
     }
 
     // 상하 움직임

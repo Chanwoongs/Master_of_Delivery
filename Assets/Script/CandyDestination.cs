@@ -13,7 +13,7 @@ public class CandyDestination : MonoBehaviour
     void Start()
     {
         p = GameObject.Find("Player").GetComponent<Player>();
-        d = GameObject.Find("Drone").GetComponent<Drone>();
+        d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
         candy = GameObject.Find("Candy");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }

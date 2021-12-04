@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.collider.CompareTag("Drone"))
         {
+            Destroy(gameObject);
             Debug.Log("hit");
         }
     }

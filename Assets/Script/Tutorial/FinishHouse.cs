@@ -7,7 +7,7 @@ public class FinishHouse : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
             SceneManager.LoadScene("MainScene");
         }

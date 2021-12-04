@@ -55,12 +55,15 @@ public class GameManager : MonoBehaviour
     public GameObject secondLand;
     public GameObject secondLandCamera;
 
+    GameObject escMenu;
+
     private GameObject player;
     Vector3 target;
     public UnityEvent toSecondLand;
 
     CarController cc;
-    
+
+    public CameraMove cam;
 
     private void Start()
     {

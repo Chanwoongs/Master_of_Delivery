@@ -25,7 +25,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
+<<<<<<< HEAD
     - _Color: {r: 1, g: 0, b: 0.010989189, a: 1}
+=======
+    - _Color: {r: 0.9622642, g: 0, b: 0.0074406033, a: 1}
+>>>>>>> chanwoong
   m_BuildTextureStacks: []
 --- !u!1002 &2100001
 EditorExtensionImpl:

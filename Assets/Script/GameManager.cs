@@ -53,8 +53,17 @@ public class GameManager : MonoBehaviour
     public UnityEvent toSecondLand;
 
     CarController cc;
-    void Awake()
+
+    private void Start()
     {
+        isDeliverd1 = 0;
+        isDeliverd2 = -1;
+        isDeliverd3 = -1;
+        isDeliverd4 = -1;
+        isDeliverd5 = -1;
+        isDeliverd6 = -1;
+        isDeliverd7 = -1;
+
         // 초기 시간 설정
         time = 18000.0f;
         // 초기 최대 시간 설정
@@ -67,22 +76,11 @@ public class GameManager : MonoBehaviour
         // 배달지 난수 생성
         randNum1 = Random.Range(0, 3);
         randNum2 = Random.Range(0, 39);
-        randNum3 = Random.Range(0, 19);      
-        randNum4 = Random.Range(0, 12);      
-        randNum5 = Random.Range(0, 19);      
-        randNum6 = Random.Range(0, 10);      
-        randNum7 = Random.Range(0, 11);      
-    }
-
-    private void Start()
-    {
-        isDeliverd1 = 0;
-        isDeliverd2 = -1;
-        isDeliverd3 = -1;
-        isDeliverd4 = -1;
-        isDeliverd5 = -1;
-        isDeliverd6 = -1;
-        isDeliverd7 = -1;
+        randNum3 = Random.Range(0, 19);
+        randNum4 = Random.Range(0, 12);
+        randNum5 = Random.Range(0, 19);
+        randNum6 = Random.Range(0, 10);
+        randNum7 = Random.Range(0, 11);
 
         secondLand.transform.position = new Vector3(secondLand.transform.position.x, -200f, secondLand.transform.position.z);
         target = new Vector3(secondLand.transform.position.x, 0f, secondLand.transform.position.z);

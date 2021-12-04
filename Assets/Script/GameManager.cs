@@ -49,10 +49,12 @@ public class GameManager : MonoBehaviour
     public GameObject playerCamera;
     public GameObject secondLand;
     public GameObject secondLandCamera;
+    GameObject escMenu;
     Vector3 target;
     public UnityEvent toSecondLand;
 
     CarController cc;
+    public CameraMove cam;
 
     private void Start()
     {
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
         // 첫번째 영역 배달지 활성화
         GameObject.Find("Section1").transform.GetChild(randNum1).gameObject.SetActive(true);
         cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
+        escMenu = GameObject.Find("UICanvas").transform.GetChild(4).gameObject;
     }
 
     void Update()
@@ -95,11 +98,13 @@ public class GameManager : MonoBehaviour
         gameClear();
         updateTime();
         updateDestination();
-
-        if(isInCar)
+        
+        if (isInCar)
         {
             UpdateOilgaGage();
         }
+
+        UpdateEscKey();
     }
 
     // 배달지 업데이트
@@ -115,7 +120,7 @@ public class GameManager : MonoBehaviour
         }
         if (isDeliverd4 == 0)
         {
-            secondLand.transform.position = Vector3.MoveTowards(secondLand.transform.position, target, 0.1f);
+            secondLand.transform.position = Vector3.MoveTowards(secondLand.transform.position, target, 10f * Time.deltaTime);
             if (toSecondLand != null)
             {
                 toSecondLand.Invoke();
@@ -196,9 +201,9 @@ public class GameManager : MonoBehaviour
 
     public void UpdateOilgaGage()
     {
-        remainingOil -= Time.deltaTime;
-        oilSlider.value = remainingOil;
+        remainingOil -= 1.2f * Time.deltaTime;
         currentOil = (int)remainingOil;
+        oilSlider.value = remainingOil;
         oilTxt.text = currentOil.ToString() + "%";
 
         if (remainingOil < 0f)
@@ -241,7 +246,37 @@ public class GameManager : MonoBehaviour
     public void setRemainingOil(float value)
     {
         remainingOil += value;
+
         if (remainingOil > oilSlider.maxValue)
             remainingOil = oilSlider.maxValue +1;
+    }
+
+    void UpdateEscKey()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!escMenu.activeSelf)
+            {
+                escMenu.SetActive(true);
+                cam.setIsAction(false);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                escMenu.SetActive(false);
+                cam.setIsAction(true);
+                Time.timeScale = 1;
+            }
+           
+        }
+    }
+
+    public void ReStart()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+    public void GameQuit()
+    {
+        Application.Quit();
     }
 }

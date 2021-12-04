@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Tutorial : MonoBehaviour
+public class TutorialGameManager : MonoBehaviour
 {
     public TalkManager talkManager;
     public CameraMove cam;
     public Player player;
+    GameObject usingMap;
 
     bool firstMessage = false;
 
@@ -17,6 +18,7 @@ public class Tutorial : MonoBehaviour
 
     bool isAction = true;
     bool first = true;
+    bool isOpen = false;
     int talkIndex = 0;
     int num = 1;
 
@@ -24,6 +26,7 @@ public class Tutorial : MonoBehaviour
     {
         TalkText = GameObject.Find("TalkText").GetComponent<Text>();
         btn = GameObject.Find("TalkButton").GetComponent<Button>();
+        usingMap = GameObject.Find("TalkCanvas").transform.GetChild(2).gameObject;
     }
 
     private void Update()
@@ -33,6 +36,19 @@ public class Tutorial : MonoBehaviour
 
         if (isAction)
             btn.onClick.AddListener(() => Talk(num)); // 클릭시 대화가 나온다.
+
+
+        if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
+        {
+            if (!usingMap.activeSelf)
+            {
+                usingMap.SetActive(true);
+            }
+            else
+            {
+                usingMap.SetActive(false);
+            }
+        }
     }
 
     void FirstKey()
@@ -41,7 +57,6 @@ public class Tutorial : MonoBehaviour
         {
             Pause();
             first = false;
-
             string talkData = talkManager.GetTalk(1, talkIndex);
             TalkText.text = string.Empty;
             StopAllCoroutines();
@@ -89,7 +104,6 @@ public class Tutorial : MonoBehaviour
         {
             isAction = true;
             firstMessage = true;
-            return;
         }
 
         TalkText.text = string.Empty;
@@ -111,5 +125,10 @@ public class Tutorial : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         isAction = true;
+    }
+
+    public void SetIsOpen(bool open)
+    {
+        isOpen = open;
     }
 }

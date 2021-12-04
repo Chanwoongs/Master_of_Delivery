@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab)) 
         {
-            if (!miniMap.activeSelf)
+            if (!miniMap.activeSelf)    
             {
                 miniMap.SetActive(true);
             }

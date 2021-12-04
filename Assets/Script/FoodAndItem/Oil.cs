@@ -15,9 +15,9 @@ public class Oil: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("PlayerCar"))
+        if (other.CompareTag("PlayerCar") || other.CompareTag("Player"))
         {
-            gm.setRemainingOil(10.0f);
+            gm.setRemainingOil(15.0f);
 
             this.gameObject.SetActive(false);
             p.interactAudio.clip = p.deliverd;

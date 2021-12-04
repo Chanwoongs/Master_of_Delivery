@@ -12,7 +12,7 @@ public class Candy : MonoBehaviour
     {
         rotSpeed = 50f;
         p = GameObject.Find("Player").GetComponent<Player>();
-        //d = GameObject.Find("Drone").GetComponent<Drone>();
+        d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
     }
     private void OnDisable()
     {

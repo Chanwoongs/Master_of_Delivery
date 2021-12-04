@@ -12,7 +12,7 @@ public class DroneCamera : MonoBehaviour
 
     private void Awake()
     {
-        ourDrone = GameObject.FindGameObjectWithTag("Drone").transform;
+        ourDrone = GameObject.Find("DroneParent").transform.GetChild(0);
     }
 
     private void FixedUpdate()

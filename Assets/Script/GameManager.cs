@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     // 남은 오일 Text
     public Text oilTxt;
     // 현재 남은 오일 상태
-    float remainingOil;
+    public float remainingOil;
     int currentOil;
     bool isInCar = false;
 
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         // 초기 최대 시간 설정
         timeSlider.maxValue = time;
         // 초기 오일 설정
-        remainingOil = 100.0f;
+        remainingOil = 100f;
         // 최대 오일 게이지 설정
         oilSlider.maxValue = remainingOil;
 
@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
         {
             remainingOil = 0; 
             cc.setMotorForce(0);  // 자동차의 힘을 0으로
-            cc.isDriving = false;  // 차 움직임을 false
+            cc.rb.velocity *= 0.1f;
         }
     }
 

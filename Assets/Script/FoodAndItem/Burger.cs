@@ -10,7 +10,7 @@ public class Burger : MonoBehaviour
     void Start()
     {
         rotSpeed = 50f;
-        d = GameObject.Find("Drone").GetComponent<Drone>();
+        d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
     }
     private void OnDisable()
     {

@@ -49,11 +49,17 @@ public class Player : MonoBehaviour
     public GameObject carCamera;
     public GameObject playerCar;
     public GameObject player;
+    public GameObject drone;
+    public GameObject minimapDrone;
+    public GameObject pickableDrone;
+    public GameObject droneCamera;
     public GameObject miniMap;
     public GameObject candy;
     public Collider c;
     public Canvas canvas;
     CarController cc;
+    Drone d;
+    PickableDrone pd;
     public bool hasCandy;
 
     public AudioSource playerAudio;
@@ -79,6 +85,8 @@ public class Player : MonoBehaviour
         c = gameObject.GetComponent<CapsuleCollider>();
         candy = GameObject.Find("PlayerCandy");
         cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
+        d = drone.GetComponent<Drone>();
+        pd = pickableDrone.GetComponent<PickableDrone>();
         m_jumpInput = false;
         gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
@@ -187,6 +195,30 @@ public class Player : MonoBehaviour
                 Invoke("setDrivingTrue", 0.2f);
             }
         }
+        if (other.CompareTag("PickableDrone"))
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (pd.isControlling)
+                    return;
+
+                playerCamera.SetActive(false);
+                droneCamera.SetActive(true);
+                drone.SetActive(true);
+                minimapDrone.SetActive(true);
+                drone.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3, player.transform.position.z);
+                drone.transform.localScale = new Vector3(1, 1, 1);
+
+                player.transform.position = player.transform.position;
+                player.GetComponent<Animator>().enabled = false;
+                Invoke("setControllingTrue", 0.2f);
+            }
+        }
+    }
+
+    private void setControllingTrue()
+    {
+        pd.isControlling = true;
     }
 
     private void setDrivingTrue()
@@ -197,6 +229,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (cc.isDriving || pd.isControlling) return;
+
         m_animator.SetBool("Grounded", m_isGrounded);
 
         switch (m_controlMode)

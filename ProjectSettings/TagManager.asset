@@ -17,6 +17,7 @@ TagManager:
   - PlayerCamera
   - Drone
   - Path
+  - PickableDrone
   layers:
   - Default
   - TransparentFX

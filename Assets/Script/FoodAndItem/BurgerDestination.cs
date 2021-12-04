@@ -11,7 +11,7 @@ public class BurgerDestination : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        d = GameObject.Find("Drone").GetComponent<Drone>();
+        d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
         burger = GameObject.Find("Burger");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }

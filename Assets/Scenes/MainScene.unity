@@ -25142,8 +25142,13 @@ MonoBehaviour:
   oilSlider: {fileID: 221271454}
   oilTxt: {fileID: 1771796561}
   remainingOil: 0
-  candy1: {fileID: 0}
-  candy2: {fileID: 0}
+  food1: {fileID: 2048907872}
+  food2: {fileID: 1431216219}
+  food3: {fileID: 265447717}
+  food4: {fileID: 2100277882}
+  food5: {fileID: 635824181}
+  food6: {fileID: 41837146}
+  food7: {fileID: 2133105721}
   isDeliverd1: 0
   isDeliverd2: 0
   isDeliverd3: 0
@@ -25164,18 +25169,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

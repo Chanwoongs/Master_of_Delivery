@@ -23,9 +23,14 @@ public class GameManager : MonoBehaviour
     int currentOil;
     bool isInCar = false;
 
-    // 남은 사탕 UI
-    public Image candy1;
-    public Image candy2;
+    // 남은 음식 UI
+    public Image food1;
+    public Image food2;
+    public Image food3;
+    public Image food4;
+    public Image food5;
+    public Image food6;
+    public Image food7;
 
     // 배달 완료 Flags 
     // -1 -> 초기상태, 0 -> 배달 X, 1 -> 배달 O
@@ -49,15 +54,21 @@ public class GameManager : MonoBehaviour
     public GameObject playerCamera;
     public GameObject secondLand;
     public GameObject secondLandCamera;
+
     GameObject escMenu;
+
+    private GameObject player;
     Vector3 target;
     public UnityEvent toSecondLand;
 
     CarController cc;
+
     public CameraMove cam;
 
     private void Start()
     {
+        player = GameObject.Find("Player");
+
         isDeliverd1 = 0;
         isDeliverd2 = -1;
         isDeliverd3 = -1;
@@ -65,6 +76,12 @@ public class GameManager : MonoBehaviour
         isDeliverd5 = -1;
         isDeliverd6 = -1;
         isDeliverd7 = -1;
+
+        // 2번째 배달 지역 음식 UI 끄기
+        food4.gameObject.SetActive(false);
+        food5.gameObject.SetActive(false);
+        food6.gameObject.SetActive(false);
+        food7.gameObject.SetActive(false);
 
         // 초기 시간 설정
         time = 18000.0f;
@@ -90,6 +107,7 @@ public class GameManager : MonoBehaviour
         // 첫번째 영역 배달지 활성화
         GameObject.Find("Section1").transform.GetChild(randNum1).gameObject.SetActive(true);
         cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
+
         escMenu = GameObject.Find("UICanvas").transform.GetChild(4).gameObject;
     }
 
@@ -103,7 +121,6 @@ public class GameManager : MonoBehaviour
         {
             UpdateOilgaGage();
         }
-
         UpdateEscKey();
     }
 
@@ -112,11 +129,13 @@ public class GameManager : MonoBehaviour
     {
         if (isDeliverd2 == 0)
         {
-            activate2ndDestination();
+            GameObject.Find("Section2").transform.GetChild(randNum2).gameObject.SetActive(true);
+            food1.gameObject.SetActive(false);
         }
         if (isDeliverd3 == 0)
         {
-            activate3rdDestination();
+            GameObject.Find("Section3").transform.GetChild(randNum3).gameObject.SetActive(true);
+            food2.gameObject.SetActive(false);
         }
         if (isDeliverd4 == 0)
         {
@@ -126,51 +145,28 @@ public class GameManager : MonoBehaviour
                 toSecondLand.Invoke();
             }
             toSecondLand = null;
-            activate4thDestination();
+            GameObject.Find("Section4").transform.GetChild(randNum4).gameObject.SetActive(true);
+            food3.gameObject.SetActive(false);
+            food4.gameObject.SetActive(true);
+            food5.gameObject.SetActive(true);
+            food6.gameObject.SetActive(true);
+            food7.gameObject.SetActive(true);
         }
         if (isDeliverd5 == 0)
         {
-            activate5thDestination();
+            GameObject.Find("Section6").transform.GetChild(randNum6).gameObject.SetActive(true);
+            food4.gameObject.SetActive(false);
         }
         if (isDeliverd6 == 0)
         {
-            activate6thDestination();
+            GameObject.Find("Section5").transform.GetChild(randNum5).gameObject.SetActive(true);
+            food6.gameObject.SetActive(false);
         }
         if (isDeliverd7 == 0)
         {
-            activate7thDestination();
+            GameObject.Find("Section7").transform.GetChild(randNum7).gameObject.SetActive(true);
+            food5.gameObject.SetActive(false);
         }
-    }
-
-    // 두번째 배달지 활성화
-    private void activate2ndDestination()
-    {
-        GameObject.Find("Section2").transform.GetChild(randNum2).gameObject.SetActive(true);
-    }
-    // 세번째 배달지 설정
-    private void activate3rdDestination()
-    {
-        GameObject.Find("Section3").transform.GetChild(randNum3).gameObject.SetActive(true);
-    }
-    // 네번째 배달지 설정 (햄버거 배달지)
-    private void activate4thDestination()
-    {
-        GameObject.Find("Section4").transform.GetChild(randNum4).gameObject.SetActive(true);
-    }
-    // 다섯번째 배달지 설정 (햄버거 배달지)
-    private void activate5thDestination()
-    {
-        GameObject.Find("Section5").transform.GetChild(randNum5).gameObject.SetActive(true);
-    }
-    // 세번째 배달지 설정 (사탕 배달지)
-    private void activate6thDestination()
-    {
-        GameObject.Find("Section6").transform.GetChild(randNum6).gameObject.SetActive(true);
-    }
-    // 세번째 배달지 설정 (사탕 배달지)
-    private void activate7thDestination()
-    {
-        GameObject.Find("Section7").transform.GetChild(randNum7).gameObject.SetActive(true);
     }
 
     private void gameClear()
@@ -202,8 +198,8 @@ public class GameManager : MonoBehaviour
     public void UpdateOilgaGage()
     {
         remainingOil -= 1.2f * Time.deltaTime;
-        currentOil = (int)remainingOil;
         oilSlider.value = remainingOil;
+        currentOil = (int)remainingOil;
         oilTxt.text = currentOil.ToString() + "%";
 
         if (remainingOil < 0f)
@@ -229,11 +225,13 @@ public class GameManager : MonoBehaviour
         secondLand.transform.position = new Vector3(secondLand.transform.position.x, -40f, secondLand.transform.position.z);
         playerCamera.SetActive(false);
         secondLandCamera.SetActive(true);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1000, player.transform.position.z);
 
         Invoke("changeCameraToPlayer", 5.0f);
     }
     private void changeCameraToPlayer()
     {
+        player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         playerCamera.SetActive(true);
         secondLandCamera.SetActive(false);
     }
@@ -246,7 +244,6 @@ public class GameManager : MonoBehaviour
     public void setRemainingOil(float value)
     {
         remainingOil += value;
-
         if (remainingOil > oilSlider.maxValue)
             remainingOil = oilSlider.maxValue + 1;
     }

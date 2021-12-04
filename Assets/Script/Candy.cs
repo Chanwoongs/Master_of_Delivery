@@ -5,12 +5,14 @@ using UnityEngine;
 public class Candy : MonoBehaviour
 {
     Player p;
+    Drone d;
     private float rotSpeed;
     // Start is called before the first frame update
     void Start()
     {
         rotSpeed = 50f;
         p = GameObject.Find("Player").GetComponent<Player>();
+        d = GameObject.Find("Drone").GetComponent<Drone>();
     }
     private void OnDisable()
     {
@@ -25,6 +27,7 @@ public class Candy : MonoBehaviour
         // ªÁ≈¡ µπæ∆∞°∞‘
         transform.Rotate(new Vector3(0, rotSpeed * Time.deltaTime, 0));
     }
+
     private void OnTriggerEnter(Collider other)
     {
         // «√∑π¿ÃæÓ ¥Í¿∏∏È
@@ -32,6 +35,15 @@ public class Candy : MonoBehaviour
         {
             // ªÁ≈¡ º“¡ˆø©∫Œ 
             p.hasCandy = true;
+            // ªÁ≈¡ ≤Ù±‚
+            this.gameObject.SetActive(false);
+        }
+        // «√∑π¿ÃæÓ ¥Í¿∏∏È
+        if (other.CompareTag("Drone"))
+        {
+            Debug.Log("Drone got candy");
+            // ªÁ≈¡ º“¡ˆø©∫Œ 
+            d.hasCandy = true;
             // ªÁ≈¡ ≤Ù±‚
             this.gameObject.SetActive(false);
         }

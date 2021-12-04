@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         // 초기 시간 설정
-        time = 180.0f;
+        time = 18000.0f;
         // 초기 최대 시간 설정
         timeSlider.maxValue = time;
         // 초기 오일 설정
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
         // 시간 슬라이더 반영
         timeSlider.value = time;
         // 시간 출력
-        timeTxt.text = time.ToString("F1") + "S";
+        timeTxt.text = time.ToString("F1") + "s";
         // 시간이 다되면 게임 오버
         if (time < 0f)
         {

@@ -107,16 +107,16 @@ public class CandyDestination : MonoBehaviour
             else if (gm.isDeliverd4 == 0)
             {
                 gm.isDeliverd4 = 1;
-                gm.isDeliverd5 = 0;
-            }
-            else if (gm.isDeliverd5 == 0)
-            {
-                gm.isDeliverd5 = 1;
                 gm.isDeliverd6 = 0;
             }
             else if (gm.isDeliverd6 == 0)
             {
                 gm.isDeliverd6 = 1;
+                gm.isDeliverd5 = 0;
+            }
+            else if (gm.isDeliverd5 == 0)
+            {
+                gm.isDeliverd5 = 1;
                 gm.isDeliverd7 = 0;
             }
             else if (gm.isDeliverd7 == 0)

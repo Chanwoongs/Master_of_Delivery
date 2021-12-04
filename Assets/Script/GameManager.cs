@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         if(isInCar)
         {
-            updateOilgaGage();
+            UpdateOilgaGage();
         }
     }
 
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void updateOilgaGage()
+    public void UpdateOilgaGage()
     {
         remainingOil -= Time.deltaTime;
         oilSlider.value = remainingOil;
@@ -211,9 +211,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void setIsInCar(bool inCar)
+    public void SetIsInCar(bool inCar)
     {
         isInCar = inCar;
+    }
+
+    public bool GetIsCar()
+    {
+        return isInCar;
     }
 
     public void changeCameraToSecondLand()

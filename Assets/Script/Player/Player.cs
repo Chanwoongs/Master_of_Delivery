@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
     public AudioClip deliverd;
     public AudioClip boom;
     GameManager gameManager;
+    bool isMove = true;
 
     private void Awake()
     {
@@ -191,7 +192,7 @@ public class Player : MonoBehaviour
     private void setDrivingTrue()
     {
         cc.isDriving = true;
-        gameManager.setIsInCar(true);  // 차타고 0.2초뒤에 움직이니까 그 때 기름 감소하도록
+        gameManager.SetIsInCar(true);  // 차타고 0.2초뒤에 움직이니까 그 때 기름 감소하도록
     }
 
     private void FixedUpdate()
@@ -219,18 +220,21 @@ public class Player : MonoBehaviour
 
     private void TankUpdate()
     {
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
+        if(isMove)
+        {
+            float v = Input.GetAxis("Vertical");
+            float h = Input.GetAxis("Horizontal");
 
-        m_currentV = Mathf.Lerp(m_currentV, v, Time.deltaTime * m_interpolation);
-        m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * m_interpolation);
+            m_currentV = Mathf.Lerp(m_currentV, v, Time.deltaTime * m_interpolation);
+            m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * m_interpolation);
 
-        transform.position += transform.forward * m_currentV * m_moveSpeed * Time.deltaTime;
-        transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0);
+            transform.position += transform.forward * m_currentV * m_moveSpeed * Time.deltaTime;
+            transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0);
 
-        m_animator.SetFloat("MoveSpeed", m_currentV);
+            m_animator.SetFloat("MoveSpeed", m_currentV);
 
-        JumpingAndLanding();
+            JumpingAndLanding();
+        }
     }
 
     private void DirectUpdate()
@@ -288,5 +292,10 @@ public class Player : MonoBehaviour
         {
             m_animator.SetTrigger("Jump");
         }
+    }
+
+    public void SetIsMove(bool move)
+    {
+        isMove = move;
     }
 }

@@ -100,7 +100,7 @@ public class CarController : MonoBehaviour
             p.GetComponent<Animator>().enabled = true;
             p.player.transform.rotation = transform.rotation;
             p.player.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z); ;
-            gameManager.setIsInCar(false);  // 타에서 내리면 기름이 감소하지 않도록
+            gameManager.SetIsInCar(false);  // 타에서 내리면 기름이 감소하지 않도록
             Invoke("setDrivingFalse", 0.2f);
         }
     }

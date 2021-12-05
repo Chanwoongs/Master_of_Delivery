@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5671412098842557387}
   - component: {fileID: 43327371088808163}
   - component: {fileID: 43327371088808162}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5130324142647833356}
   - component: {fileID: 2438582906981336440}
   - component: {fileID: 361641783596751332}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Quad [Propeller] (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 5251863386259376563}
   - component: {fileID: 5190976979633350282}
   - component: {fileID: 1867708105101276527}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Quad [Propeller] (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3783160596002927543}
   - component: {fileID: 1491226903792278857}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PoliceRadioChatter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 1046062906397765791}
   - component: {fileID: 5358686380559923733}
   - component: {fileID: 4037724765939806237}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Quad [Propeller] (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 5278602330853889949}
   - component: {fileID: 5278602330853889948}
   - component: {fileID: 5278602330853889950}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,6 +602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunTransform: {fileID: 7199034771913432726}
   bulletPrefab: {fileID: 1498155254344252608, guid: 04cb813cc6f6bb14b93ae7019b5814e9, type: 3}
+  policeAudio: {fileID: 1491226903792278857}
+  shootAudio: {fileID: 6956745654670767960}
   fireRate: 6
 --- !u!1 &5364222469784429003
 GameObject:
@@ -615,7 +617,7 @@ GameObject:
   - component: {fileID: 6502904460619443258}
   - component: {fileID: 3698250028190139694}
   - component: {fileID: 5364222469784429004}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Quad [Propeller] (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +738,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7199034771913432726}
-  m_Layer: 0
+  - component: {fileID: 6956745654670767960}
+  m_Layer: 14
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,6 +760,102 @@ Transform:
   m_Father: {fileID: 3359332053315409775}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &6956745654670767960
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199034771913432725}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d122f4cfc43fcba42904ff6d7c5fbee6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7199034772094331011
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +1037,7 @@ GameObject:
   - component: {fileID: 6261506113344955128}
   - component: {fileID: 4647792576417676019}
   - component: {fileID: 8109020120017862582}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Quad [Badge]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1118,7 @@ GameObject:
   - component: {fileID: 8223493937051014336}
   - component: {fileID: 9175335470756355572}
   - component: {fileID: 5016949757752638710}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Quad [Camera]
   m_TagString: Untagged
   m_Icon: {fileID: 0}

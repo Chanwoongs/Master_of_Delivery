@@ -46,8 +46,6 @@ public class BurgerDestination : MonoBehaviour
             if (gm.isDeliverd4 != 0)
                 audioSource.Play();
 
-            hambergerText.SetActive(true);
-
             // 배달지 변경
             if (gm.isDeliverd1 == 0)
             {
@@ -70,17 +68,17 @@ public class BurgerDestination : MonoBehaviour
             else if (gm.isDeliverd4 == 0)
             {
                 gm.isDeliverd4 = 1;
-                gm.isDeliverd6 = 0;
-            }
-            else if (gm.isDeliverd6 == 0)
-            {
-                gm.isDeliverd6 = 1;
                 gm.isDeliverd5 = 0;
-                hambergerText.SetActive(true);
             }
             else if (gm.isDeliverd5 == 0)
             {
                 gm.isDeliverd5 = 1;
+                gm.isDeliverd6 = 0;
+                hambergerText.SetActive(true);
+            }
+            else if (gm.isDeliverd6 == 0)
+            {
+                gm.isDeliverd6 = 1;
                 gm.isDeliverd7 = 0;
                 candyText.SetActive(true);
             }

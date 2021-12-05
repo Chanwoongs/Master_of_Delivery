@@ -41,7 +41,7 @@ public class Candy : MonoBehaviour
             // ªÁ≈¡ ≤Ù±‚
             this.gameObject.SetActive(false);
         }
-        // «√∑π¿ÃæÓ ¥Í¿∏∏È
+        // µÂ∑– ¥Í¿∏∏È
         if (other.CompareTag("Drone"))
         {
             if (gm.isDeliverd4 == 0 || gm.isDeliverd6 == 0) return;

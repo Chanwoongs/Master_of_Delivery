@@ -34,11 +34,11 @@ public class CandyDestination : MonoBehaviour
             if (p.hasCandy == false) return;
            
             p.hasCandy = false;
-
+            candy.SetActive(true);
             p.interactAudio.clip = p.deliverd;
             p.interactAudio.Play();
 
-            if(gm.isDeliverd4 != 0)
+            if(gm.isDeliverd3 != 0)
                 audioSource.Play();
 
             if (gm.isDeliverd1 == 0)
@@ -57,7 +57,6 @@ public class CandyDestination : MonoBehaviour
             {
                 gm.isDeliverd3 = 1;
                 gm.isDeliverd4 = 0;
-                candyText.SetActive(true);
             }
             else if (gm.isDeliverd4 == 0)
             {
@@ -89,8 +88,11 @@ public class CandyDestination : MonoBehaviour
             if (d.hasCandy == false) return;
 
             candy.SetActive(true);
-            
+
             d.hasCandy = false;
+
+            if (gm.isDeliverd3 != 0)
+                audioSource.Play();
 
             if (gm.isDeliverd1 == 0)
             {
@@ -108,7 +110,6 @@ public class CandyDestination : MonoBehaviour
             {
                 gm.isDeliverd3 = 1;
                 gm.isDeliverd4 = 0;
-                candyText.SetActive(true);
             }
             else if (gm.isDeliverd4 == 0)
             {

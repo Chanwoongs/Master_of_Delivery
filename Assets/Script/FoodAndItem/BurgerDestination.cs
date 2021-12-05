@@ -43,7 +43,7 @@ public class BurgerDestination : MonoBehaviour
             p.interactAudio.clip = p.deliverd;
             p.interactAudio.Play();
 
-            if (gm.isDeliverd4 != 0)
+            if (gm.isDeliverd3 != 0)
                 audioSource.Play();
 
             // 배달지 변경
@@ -63,7 +63,6 @@ public class BurgerDestination : MonoBehaviour
             {
                 gm.isDeliverd3 = 1;
                 gm.isDeliverd4 = 0;
-                candyText.SetActive(true);
             }
             else if (gm.isDeliverd4 == 0)
             {

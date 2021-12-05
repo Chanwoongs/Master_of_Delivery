@@ -120,13 +120,13 @@ public class GameManager : MonoBehaviour
         oilSlider.maxValue = remainingOil;
 
         // 배달지 난수 생성
-        randNum1 = Random.Range(0, 3);
-        randNum2 = Random.Range(0, 39);
-        randNum3 = Random.Range(0, 19);
-        randNum4 = Random.Range(0, 12);
-        randNum5 = Random.Range(0, 19);
-        randNum6 = Random.Range(0, 10);
-        randNum7 = Random.Range(0, 11);
+        randNum1 = Random.Range(0, 4);
+        randNum2 = Random.Range(0, 40);
+        randNum3 = Random.Range(0, 20);
+        randNum4 = Random.Range(0, 13);
+        randNum5 = Random.Range(0, 20);
+        randNum6 = Random.Range(0, 11);
+        randNum7 = Random.Range(0, 12);
 
         secondLand.transform.position = new Vector3(secondLand.transform.position.x, -200f, secondLand.transform.position.z);
         target = new Vector3(secondLand.transform.position.x, 0f, secondLand.transform.position.z);

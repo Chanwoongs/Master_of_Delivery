@@ -19,6 +19,6 @@ public class GameStart : MonoBehaviour
 
     public void gameStart()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("PlayerTutorial");
     }
 }

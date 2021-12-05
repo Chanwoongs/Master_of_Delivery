@@ -56,4 +56,14 @@ public class Eagle : MonoBehaviour
             timer = 0;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Buildings"))
+        {
+            this.gameObject.transform.rotation = Quaternion.Euler(0, transform.localEulerAngles.y - 180, 0);
+        }
+
+    }
+
 }

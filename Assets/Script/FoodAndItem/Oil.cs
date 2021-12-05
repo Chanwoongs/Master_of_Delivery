@@ -17,7 +17,7 @@ public class Oil: MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("PlayerCar"))
         {
-            gm.setRemainingOil(10.0f);
+            gm.setRemainingOil(15.0f);
 
             this.gameObject.SetActive(false);
             p.interactAudio.clip = p.deliverd;

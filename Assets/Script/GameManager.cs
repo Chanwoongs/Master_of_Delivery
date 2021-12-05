@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         food7.gameObject.SetActive(false);
 
         // 초기 시간 설정
-        time = 18000.0f;
+        time = 150.0f;
         // 초기 최대 시간 설정
         timeSlider.maxValue = time;
         // 초기 오일 설정
@@ -281,6 +281,11 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         playerCamera.SetActive(true);
         secondLandCamera.SetActive(false);
+    }
+
+    public void resetTime()
+    {
+        time = 200;
     }
 
     public float getRemainingOil()

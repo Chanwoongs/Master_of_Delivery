@@ -19,6 +19,8 @@ TagManager:
   - Path
   - PickableDrone
   - Bullet
+  - Buildings
+  - Eagle
   layers:
   - Default
   - TransparentFX
@@ -33,7 +35,7 @@ TagManager:
   - Enemy
   - OnlyInMiniMap
   - Object
-  - 
+  - Eagle
   - 
   - 
   - 

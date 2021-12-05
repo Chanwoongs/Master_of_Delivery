@@ -54,6 +54,10 @@ public class Drone : MonoBehaviour
         {
             hp -= 20;
         }
+        if(collision.collider.CompareTag("Eagle"))
+        {
+            hp -= 50;
+        }
     }
 
     private void OnDroneDestroyed()

@@ -6,13 +6,11 @@ public class Burger : MonoBehaviour
 {
     Drone d;
     Player p;
-    GameManager gm;
     private float rotSpeed;
     // Start is called before the first frame update
     void Start()
     {
         rotSpeed = 50f;
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
         p = GameObject.Find("Player").GetComponent<Player>();
     }
@@ -35,7 +33,6 @@ public class Burger : MonoBehaviour
         // 드론에 닿으면
         if (other.CompareTag("Drone"))
         {
-            if (gm.isDeliverd5 == 0 || gm.isDeliverd7 == 0) return;
             // 버거 소지여부 
             d.hasBurger = true;
             // 버거 끄기

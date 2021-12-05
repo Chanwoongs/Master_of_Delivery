@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7158094618736166383}
   - component: {fileID: 5892241365228238302}
   - component: {fileID: 7504233249183366948}
-  - component: {fileID: 8017252292932682669}
+  - component: {fileID: 8449227833139940583}
   m_Layer: 0
   m_Name: QuestZone2Blue
   m_TagString: Untagged
@@ -4815,7 +4815,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.045
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8017252292932682669
+--- !u!114 &8449227833139940583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

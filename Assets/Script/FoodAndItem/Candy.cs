@@ -6,13 +6,11 @@ public class Candy : MonoBehaviour
 {
     Player p;
     Drone d;
-    GameManager gm;
     private float rotSpeed;
     // Start is called before the first frame update
     void Start()
     {
         rotSpeed = 50f;
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         p = GameObject.Find("Player").GetComponent<Player>();
         d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
     }
@@ -35,7 +33,6 @@ public class Candy : MonoBehaviour
         // 플레이어 닿으면
         if (other.CompareTag("Player"))
         {
-            if (gm.isDeliverd4 != -1) return;
             // 사탕 소지여부 
             p.hasCandy = true;
             // 사탕 끄기
@@ -44,7 +41,6 @@ public class Candy : MonoBehaviour
         // 플레이어 닿으면
         if (other.CompareTag("Drone"))
         {
-            if (gm.isDeliverd6 == 0 || gm.isDeliverd4 == 0) return;
             Debug.Log("Drone got candy");
             // 사탕 소지여부 
             d.hasCandy = true;

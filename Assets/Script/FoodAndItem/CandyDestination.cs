@@ -29,7 +29,6 @@ public class CandyDestination : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (p.hasCandy == false) return;
-
             // »çÅÁ°¡°Ô Äµµğ
             candy.SetActive(true);
            

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3210909793486533909}
   - component: {fileID: 1083389595565533873}
   - component: {fileID: 745992907612864027}
-  - component: {fileID: 6638343250396256069}
   m_Layer: 0
   m_Name: QuestZone2Purple
   m_TagString: Untagged
@@ -4801,18 +4800,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &6638343250396256069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319104102522538441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23629b44aabbbdc49bfb7825981029a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2283709690082570424
 GameObject:
   m_ObjectHideFlags: 0

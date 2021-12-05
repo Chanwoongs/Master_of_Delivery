@@ -8,7 +8,6 @@ public class DroneGun : MonoBehaviour
     public Transform gunTransform;
     public GameObject bulletPrefab;
     public AudioSource policeAudio;
-    public AudioSource shootAudio;
 
     public float fireRate = 6;
     private float waitTillNextFire = 0.0f;
@@ -31,7 +30,6 @@ public class DroneGun : MonoBehaviour
        if (waitTillNextFire <= 0)
        {
             Instantiate(bulletPrefab, gunTransform.position, gunTransform.rotation);
-            shootAudio.Play();
             waitTillNextFire = 5;
             Debug.Log("Fire");
        }

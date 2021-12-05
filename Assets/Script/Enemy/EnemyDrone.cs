@@ -11,7 +11,7 @@ public class EnemyDrone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path = gameObject.transform.parent.GetChild(0).transform;
+        path = GameObject.FindGameObjectWithTag("Path").transform;
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();
 
@@ -43,6 +43,6 @@ public class EnemyDrone : MonoBehaviour
                 currentNode++;
             }
         }
-        transform.position = Vector3.MoveTowards(transform.position, nodes[currentNode].position, 1.5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, nodes[currentNode].position, Time.deltaTime);
     }
 }

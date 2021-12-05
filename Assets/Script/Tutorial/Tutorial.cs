@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
     public TalkManager talkManager;
     public CameraMove cam;
-    public Player player;
+    public SimpleSampleCharacterControl player;
 
     bool firstMessage = false;
 
@@ -18,7 +18,6 @@ public class Tutorial : MonoBehaviour
     bool isAction = true;
     bool first = true;
     int talkIndex = 0;
-    int num = 1;
 
     private void Start()
     {
@@ -32,37 +31,35 @@ public class Tutorial : MonoBehaviour
             FirstKey();
 
         if (isAction)
-            btn.onClick.AddListener(() => Talk(num)); // 클릭시 대화가 나온다.
+            btn.onClick.AddListener(() => Talk(1)); // 클릭시 대화가 나온다.
     }
 
     void FirstKey()
     {
         if (Input.anyKeyDown)
         {
-            Pause();
             first = false;
+            string talkData = null;
 
-            string talkData = talkManager.GetTalk(1, talkIndex);
+            if (SceneManager.GetActiveScene().name == "PlayerTutorial")
+            {
+                talkData = talkManager.GetTalk(1, talkIndex);
+            }
+            else if (SceneManager.GetActiveScene().name == "CarTutorial")
+            {
+                talkData = talkManager.GetTalk(2, talkIndex);
+            }
+            else if (SceneManager.GetActiveScene().name == "DroneTutorial")
+            {
+                talkData = talkManager.GetTalk(3, talkIndex);
+            }
+            
             TalkText.text = string.Empty;
             StopAllCoroutines();
             StartCoroutine(Typing(talkData, 1));
         }
     }
-
-    void Pause()
-    {
-        // 플레이어 이동제한
-        player.SetIsMove(false);
-        cam.setIsAction(false);
-    }
-
-    void Continue()
-    {
-        // 플레이어 이동제한 해제
-        player.SetIsMove(true);
-        cam.setIsAction(true);
-    }
-
+    
     void Talk(int id)
     {
         if (isAction == false)
@@ -71,9 +68,7 @@ public class Tutorial : MonoBehaviour
         if (firstMessage)
         {
             TalkText.text = string.Empty;
-            Continue();
         }
-            
 
         isAction = false;
 
@@ -84,6 +79,7 @@ public class Tutorial : MonoBehaviour
         }
 
         string talkData = talkManager.GetTalk(id, talkIndex);
+
        
         if (talkData == null)
         {
@@ -111,5 +107,11 @@ public class Tutorial : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         isAction = true;
+        Invoke("EmptyText", 2f);
+    }
+
+    void EmptyText()
+    {
+        TalkText.text = string.Empty;
     }
 }

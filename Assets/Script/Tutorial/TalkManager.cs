@@ -14,7 +14,9 @@ public class TalkManager : MonoBehaviour
 
     void AddData()
     {
-        talkData.Add(1, new string[] { "튜토리얼입니다.", "자유롭게 자동차와 드론을 익히세요.", "익숙해졌다면 집으로 이동하여 배달을 완수하세요."});
+        talkData.Add(1, new string[] { "튜토리얼 입니다. 앞에 보이는 포탈까지 이동하세요." });
+        talkData.Add(2, new string[] { "차를 자유롭게 이용하여 포탈까지 이동하세요." });
+        talkData.Add(3, new string[] { "드론을 자유롭게 연습하고 앞에 보이는 포탈까지 이동하세요." });
     }
 
     public string GetTalk(int id, int talkIndex)

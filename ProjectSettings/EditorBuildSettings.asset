@@ -8,9 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScene.unity
     guid: 2ba5fb96d8a2a044ba4e305cd6ed06bc
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/PlayerTutorial.unity
+    guid: cf81979128b13454d97d206cd8bd36b1
+  - enabled: 1
+    path: Assets/Scenes/CarTutorial.unity
+    guid: b18ace41c3c85dc42955da2af2cdab0c
+  - enabled: 1
+    path: Assets/Scenes/DroneTutorial.unity
+    guid: 733aab4bb57fe204bbfb5d5dd2091a1f
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: da8b0d3cd7fbaea4f94ebb41129f28bd
   - enabled: 1
     path: Assets/Scenes/FailScene.unity
     guid: 9bc51152661202044a5d4dc94b2bea43

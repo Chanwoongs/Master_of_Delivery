@@ -131,6 +131,7 @@ public class CarTutorialController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("DroneTutorial");
+        if (other.CompareTag("Portal"))
+            SceneManager.LoadScene("DroneTutorial");
     }
 }

@@ -233,6 +233,7 @@ public class PlayerTutorial : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("CarTutorial");
+        if (other.CompareTag("Portal"))
+             SceneManager.LoadScene("CarTutorial");
     }
 }

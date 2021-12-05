@@ -1004,6 +1004,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3083733781968339453, guid: 614f3c4f2d72afd46a7def1ee6553d63, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 269079748}
+    - target: {fileID: 3083733781968339453, guid: 614f3c4f2d72afd46a7def1ee6553d63, type: 3}
       propertyPath: talkManager
       value: 
       objectReference: {fileID: 845390731}

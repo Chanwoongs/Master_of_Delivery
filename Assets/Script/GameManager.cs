@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         // 첫번째 영역 배달지 활성화
         GameObject.Find("Section1").transform.GetChild(randNum1).gameObject.SetActive(true);
         cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
-
+       
         escMenu = GameObject.Find("UICanvas").transform.GetChild(4).gameObject;
         explainDroneText = GameObject.Find("UICanvas").transform.GetChild(8).gameObject;
         hambergerText = GameObject.Find("UICanvas").transform.GetChild(6).gameObject;

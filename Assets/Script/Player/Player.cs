@@ -164,6 +164,7 @@ public class Player : MonoBehaviour
                 m_collisions.Remove(collision.collider);
             }
             if (m_collisions.Count == 0) { m_isGrounded = false; }
+       
         }
     }
 
@@ -199,18 +200,19 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (pd.isControlling)
-                    return;
+                if (pd.isControlling) return;
 
                 playerCamera.SetActive(false);
+
                 droneCamera.SetActive(true);
                 drone.SetActive(true);
-                minimapDrone.SetActive(true);
-                drone.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3, player.transform.position.z);
-                drone.transform.localScale = new Vector3(1, 1, 1);
+                drone.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2, player.transform.position.z);
 
                 player.transform.position = player.transform.position;
                 player.GetComponent<Animator>().enabled = false;
+
+                gameManager.droneUI.gameObject.SetActive(true);
+                other.gameObject.SetActive(false);
                 Invoke("setControllingTrue", 0.2f);
             }
         }

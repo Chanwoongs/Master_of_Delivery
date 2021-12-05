@@ -18,6 +18,7 @@ TagManager:
   - Drone
   - Path
   - PickableDrone
+  - Bullet
   layers:
   - Default
   - TransparentFX

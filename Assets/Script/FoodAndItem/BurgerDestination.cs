@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BurgerDestination : MonoBehaviour
 {
+    Player p;
     Drone d;
     GameObject burger;
     GameManager gm;
@@ -11,6 +12,7 @@ public class BurgerDestination : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        p = GameObject.Find("Player").GetComponent<Player>();
         d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
         burger = GameObject.Find("Burger");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -33,6 +35,8 @@ public class BurgerDestination : MonoBehaviour
             // 사탕 소지 false
             d.hasBurger = false;
             // 효과음 재생
+            p.interactAudio.clip = p.deliverd;
+            p.interactAudio.Play();
 
             // 배달지 변경
             if (gm.isDeliverd1 == 0)

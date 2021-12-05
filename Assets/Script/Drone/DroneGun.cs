@@ -59,7 +59,7 @@ public class DroneGun : MonoBehaviour
         if (other.CompareTag("Drone"))
         {
             policeAudio.Play();
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
     }
 }

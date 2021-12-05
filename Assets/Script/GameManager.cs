@@ -32,6 +32,15 @@ public class GameManager : MonoBehaviour
     public Image food6;
     public Image food7;
 
+    // 드론 UI 부모
+    public GameObject droneUI;
+    // 드론 hp UI
+    public Slider droneHP;
+    public Text hpTxt;
+    // 드론 높이 UI
+    public Slider droneHeight;
+    public Text heightTxt;
+
     // 배달 완료 Flags 
     // -1 -> 초기상태, 0 -> 배달 X, 1 -> 배달 O
     [SerializeField] public int isDeliverd1;
@@ -51,15 +60,24 @@ public class GameManager : MonoBehaviour
     private int randNum6;
     private int randNum7;
 
+    // 내륙 지역을 클리어 했는지
+    public bool isFirstCleared;
+
     public GameObject playerCamera;
     public GameObject secondLand;
     public GameObject secondLandCamera;
 
+    public GameObject pickableDrones;
+
     GameObject escMenu;
 
     private GameObject player;
+    public GameObject drone;
+    public GameObject pickableDrone;
     Vector3 target;
     public UnityEvent toSecondLand;
+    Drone d;
+    PickableDrone pd;
 
     CarController cc;
 
@@ -67,6 +85,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        pd = pickableDrone.GetComponent<PickableDrone>();
+        d = drone.GetComponent<Drone>();
         player = GameObject.Find("Player");
 
         isDeliverd1 = 0;
@@ -121,6 +141,8 @@ public class GameManager : MonoBehaviour
         {
             UpdateOilgaGage();
         }
+        UpdateDroneHP();
+        UpdateDroneHeight();
         UpdateEscKey();
     }
 
@@ -139,6 +161,7 @@ public class GameManager : MonoBehaviour
         }
         if (isDeliverd4 == 0)
         {
+            isFirstCleared = true;
             secondLand.transform.position = Vector3.MoveTowards(secondLand.transform.position, target, 10f * Time.deltaTime);
             if (toSecondLand != null)
             {
@@ -146,11 +169,17 @@ public class GameManager : MonoBehaviour
             }
             toSecondLand = null;
             GameObject.Find("Section4").transform.GetChild(randNum4).gameObject.SetActive(true);
+
+            // UI 업데이트
             food3.gameObject.SetActive(false);
             food4.gameObject.SetActive(true);
             food5.gameObject.SetActive(true);
             food6.gameObject.SetActive(true);
             food7.gameObject.SetActive(true);
+
+            // 드론 배치
+            pickableDrones.SetActive(true);
+            
         }
         if (isDeliverd5 == 0)
         {
@@ -207,6 +236,24 @@ public class GameManager : MonoBehaviour
             remainingOil = 0;
             cc.setMotorForce(0);  // 자동차의 힘을 0으로
             cc.rb.velocity *= 0.1f;
+        }
+    }
+
+    private void UpdateDroneHP()
+    {
+        if (pd.isControlling)
+        {
+            droneHP.value = d.hp;
+            hpTxt.text = d.hp.ToString() + "%";
+        }
+    }
+
+    private void UpdateDroneHeight()
+    {
+        if (pd.isControlling)
+        {
+            droneHeight.value = d.height;
+            heightTxt.text = d.height.ToString("F2");
         }
     }
 

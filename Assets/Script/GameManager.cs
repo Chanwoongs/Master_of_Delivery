@@ -79,9 +79,16 @@ public class GameManager : MonoBehaviour
     Drone d;
     PickableDrone pd;
 
+    // 지진소리
+    public AudioSource earthquackSound;
+    public AudioSource bgm;
+
     CarController cc;
 
     public CameraMove cam;
+    public AudioSource orderAudio;
+    GameObject explainDroneText;
+    GameObject hambergerText;
 
     private void Start()
     {
@@ -129,6 +136,8 @@ public class GameManager : MonoBehaviour
         cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
 
         escMenu = GameObject.Find("UICanvas").transform.GetChild(4).gameObject;
+        explainDroneText = GameObject.Find("UICanvas").transform.GetChild(8).gameObject;
+        hambergerText = GameObject.Find("UICanvas").transform.GetChild(6).gameObject;
     }
 
     void Update()
@@ -162,7 +171,7 @@ public class GameManager : MonoBehaviour
         if (isDeliverd4 == 0)
         {
             isFirstCleared = true;
-            secondLand.transform.position = Vector3.MoveTowards(secondLand.transform.position, target, 10f * Time.deltaTime);
+            secondLand.transform.position = Vector3.MoveTowards(secondLand.transform.position, target, 4.5f * Time.deltaTime);
             if (toSecondLand != null)
             {
                 toSecondLand.Invoke();
@@ -269,18 +278,26 @@ public class GameManager : MonoBehaviour
 
     public void changeCameraToSecondLand()
     {
+        earthquackSound.Play();
+        bgm.Stop();
         secondLand.transform.position = new Vector3(secondLand.transform.position.x, -40f, secondLand.transform.position.z);
         playerCamera.SetActive(false);
         secondLandCamera.SetActive(true);
         player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1000, player.transform.position.z);
 
-        Invoke("changeCameraToPlayer", 5.0f);
+        Invoke("changeCameraToPlayer", 12.0f);
     }
     private void changeCameraToPlayer()
     {
+        earthquackSound.Stop();
+        bgm.Play();
         player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         playerCamera.SetActive(true);
         secondLandCamera.SetActive(false);
+
+        orderAudio.Play();
+        explainDroneText.SetActive(false);
+        hambergerText.SetActive(true);
     }
 
     public void resetTime()
@@ -316,7 +333,6 @@ public class GameManager : MonoBehaviour
                 cam.setIsAction(true);
                 Time.timeScale = 1;
             }
-
         }
     }
 
@@ -327,5 +343,10 @@ public class GameManager : MonoBehaviour
     public void GameQuit()
     {
         Application.Quit();
+    }
+
+    public void ShowExplainDroneText()
+    {
+        explainDroneText.SetActive(true);
     }
 }

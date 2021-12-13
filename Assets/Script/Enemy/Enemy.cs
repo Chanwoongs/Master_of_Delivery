@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public GameObject target;
     NavMeshAgent agent;
     Animator animator;
+    GameManager gm;
+    Rigidbody rb;
 
     [SerializeField] bool detected;
 
@@ -19,6 +21,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();
 

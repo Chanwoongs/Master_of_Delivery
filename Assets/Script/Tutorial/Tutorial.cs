@@ -8,7 +8,6 @@ public class Tutorial : MonoBehaviour
 {
     public TalkManager talkManager;
     public CameraMove cam;
-
     public SimpleSampleCharacterControl player;
 
     bool firstMessage = false;
@@ -17,19 +16,13 @@ public class Tutorial : MonoBehaviour
     private Button btn;
 
     bool isAction = true;
-    bool first;
+    bool first = true;
     int talkIndex = 0;
 
-    public GameObject pause;
-    bool textEnd;
     private void Start()
     {
-
-        first = true;
-        textEnd = false;
         TalkText = GameObject.Find("TalkText").GetComponent<Text>();
         btn = GameObject.Find("TalkButton").GetComponent<Button>();
-        pause = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -39,29 +32,6 @@ public class Tutorial : MonoBehaviour
 
         if (isAction)
             btn.onClick.AddListener(() => Talk(1)); // 클릭시 대화가 나온다.
-
-        if(Input.GetKeyDown(KeyCode.Escape) && textEnd)
-        {
-            if (!pause.activeSelf)
-            {
-                if (SceneManager.GetActiveScene().name == "PlayerTutorial")
-                    cam.setIsAction(false);
-                else if (SceneManager.GetActiveScene().name == "CarTutorial" || SceneManager.GetActiveScene().name == "DroneTutorial")
-                    Time.timeScale = 0;
-         
-                pause.SetActive(true);
-            }
-            else if (pause.activeSelf)
-            {
-                if (SceneManager.GetActiveScene().name == "PlayerTutorial")
-                    cam.setIsAction(false);
-                else if (SceneManager.GetActiveScene().name == "CarTutorial" || SceneManager.GetActiveScene().name == "DroneTutorial")
-                    Time.timeScale = 1;
-              
-                pause.SetActive(false);
-            }
-        }
-
     }
 
     void FirstKey()
@@ -142,7 +112,6 @@ public class Tutorial : MonoBehaviour
 
     void EmptyText()
     {
-        textEnd = true;
         TalkText.text = string.Empty;
     }
 }

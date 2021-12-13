@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if (!m_jumpInput && !cc.isDriving && Input.GetKey(KeyCode.Space))
+        if (!m_jumpInput && Input.GetKey(KeyCode.Space))
         {
             m_jumpInput = true;
         }

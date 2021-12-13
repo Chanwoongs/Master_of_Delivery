@@ -12,10 +12,8 @@ public class CarCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         HandleTranslation();
         HandleRotation();
-
     }
 
     private void HandleTranslation()

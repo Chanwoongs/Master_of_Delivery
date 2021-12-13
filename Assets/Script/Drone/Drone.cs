@@ -75,13 +75,11 @@ public class Drone : MonoBehaviour
             {
                 hasBurger = false;
                 droneBurger.transform.localScale = new Vector3(0, 0, 0);
-                burger.SetActive(true);
             }
             if (hasCandy)
             {
                 hasCandy = false;
                 droneCandy.transform.localScale = new Vector3(0, 0, 0);
-                candy.SetActive(true);
             }
         }
     }

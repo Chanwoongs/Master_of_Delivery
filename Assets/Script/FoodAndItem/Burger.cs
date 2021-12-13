@@ -39,8 +39,6 @@ public class Burger : MonoBehaviour
             if (gm.isDeliverd5 == 0 || gm.isDeliverd7 == 0) return;
             // 버거 소지여부 
             d.hasBurger = true;
-            // 버거 끄기
-            this.gameObject.SetActive(false);
         }
     }
 }

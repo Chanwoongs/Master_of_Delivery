@@ -34,8 +34,7 @@ public class BurgerDestination : MonoBehaviour
         if (other.CompareTag("Drone"))
         {
             if (d.hasBurger == false) return;
-            // 버거집 버거
-            burger.SetActive(true);
+          
 
             // 사탕 소지 false
             d.hasBurger = false;

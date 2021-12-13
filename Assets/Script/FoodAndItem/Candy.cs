@@ -44,8 +44,6 @@ public class Candy : MonoBehaviour
             if (gm.isDeliverd4 != -1) return;
             // ªÁ≈¡ º“¡ˆø©∫Œ 
             p.hasCandy = true;
-            // ªÁ≈¡ ≤Ù±‚
-            this.gameObject.SetActive(false);
         }
         // µÂ∑– ¥Í¿∏∏È
         if (other.CompareTag("Drone"))
@@ -54,8 +52,6 @@ public class Candy : MonoBehaviour
             Debug.Log("Drone got candy");
             // ªÁ≈¡ º“¡ˆø©∫Œ 
             d.hasCandy = true;
-            // ªÁ≈¡ ≤Ù±‚
-            this.gameObject.SetActive(false);
         }
     }
 }

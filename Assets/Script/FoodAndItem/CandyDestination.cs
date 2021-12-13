@@ -34,7 +34,6 @@ public class CandyDestination : MonoBehaviour
             if (p.hasCandy == false) return;
            
             p.hasCandy = false;
-            candy.SetActive(true);
             p.interactAudio.clip = p.deliverd;
             p.interactAudio.Play();
 
@@ -87,7 +86,6 @@ public class CandyDestination : MonoBehaviour
         {
             if (d.hasCandy == false) return;
 
-            candy.SetActive(true);
 
             d.hasCandy = false;
 

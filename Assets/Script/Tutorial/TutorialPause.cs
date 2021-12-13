@@ -5,23 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class TutorialPause : MonoBehaviour
 {
-    GameObject skip;
-
-    private void Start()
-    {
-        skip = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
-    }
 
     public void SkipTutorial()
     {
-        skip.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene("MainScene");
     }
 
     public void GoTitle()
     {
-        skip.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene("TitleScene");
     } 

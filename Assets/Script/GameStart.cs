@@ -21,4 +21,8 @@ public class GameStart : MonoBehaviour
     {
         SceneManager.LoadScene("PlayerTutorial");
     }
+    public void GameQuit()
+    {
+        Application.Quit();
+    }
 }

@@ -346,11 +346,17 @@ public class GameManager : MonoBehaviour
 
     public void ReStart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainScene");
     }
     public void GameQuit()
     {
         Application.Quit();
+    }
+    public void GoTitle()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("TitleScene");
     }
 
     public void ShowExplainDroneText()

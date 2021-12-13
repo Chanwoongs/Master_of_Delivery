@@ -125,8 +125,8 @@ public class GameManager : MonoBehaviour
 
         // 배달지 난수 생성
         randNum1 = Random.Range(0, 4);
-        randNum2 = Random.Range(0, 40);
-        randNum3 = Random.Range(0, 19);
+        randNum2 = Random.Range(0, 37);
+        randNum3 = Random.Range(0, 17);
         randNum4 = Random.Range(0, 12);
         randNum5 = Random.Range(0, 19);
         randNum6 = Random.Range(0, 10);

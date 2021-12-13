@@ -18,6 +18,7 @@ public class CarEngine : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {      
+
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
         p = GameObject.Find("Player").GetComponent<Player>();
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();

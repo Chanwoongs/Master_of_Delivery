@@ -19,26 +19,26 @@ public class Tutorial : MonoBehaviour
     bool isAction = true;
     bool first;
     int talkIndex = 0;
+    string talkData;
 
     public GameObject pause;
     bool textEnd;
     private void Start()
     {
-
+        talkData = null;
         first = true;
         textEnd = false;
         TalkText = GameObject.Find("TalkText").GetComponent<Text>();
         btn = GameObject.Find("TalkButton").GetComponent<Button>();
-        pause = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        pause = GameObject.Find("TalkCanvas").transform.GetChild(2).gameObject;
     }
 
     private void Update()
     {
+        string talkData = null;
+
         if (first)
             FirstKey();
-
-        if (isAction)
-            btn.onClick.AddListener(() => Talk(1)); // 클릭시 대화가 나온다.
 
         if(Input.GetKeyDown(KeyCode.Escape) && textEnd)
         {
@@ -69,7 +69,7 @@ public class Tutorial : MonoBehaviour
         if (Input.anyKeyDown)
         {
             first = false;
-            string talkData = null;
+           
 
             if (SceneManager.GetActiveScene().name == "PlayerTutorial")
             {

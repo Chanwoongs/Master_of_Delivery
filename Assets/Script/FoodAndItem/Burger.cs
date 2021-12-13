@@ -16,15 +16,7 @@ public class Burger : MonoBehaviour
         d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
         p = GameObject.Find("Player").GetComponent<Player>();
     }
-    private void OnDisable()
-    {
-        if (p == null) return;
-        // 효과음 추가
-        p.interactAudio.clip = p.getCandy;
-        p.interactAudio.volume = 1.0f;
-        p.interactAudio.Play();
-        p.interactAudio.volume = 0.5f;
-    }
+
     // Update is called once per frame
     void Update()
     {
@@ -39,6 +31,11 @@ public class Burger : MonoBehaviour
             if (gm.isDeliverd5 == 0 || gm.isDeliverd7 == 0) return;
             // 버거 소지여부 
             d.hasBurger = true;
+
+            p.interactAudio.clip = p.getCandy;
+            p.interactAudio.volume = 1.0f;
+            p.interactAudio.Play();
+            p.interactAudio.volume = 0.3f;
         }
     }
 }

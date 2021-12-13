@@ -9,7 +9,7 @@ public class TutorialPause : MonoBehaviour
 
     private void Start()
     {
-        skip = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        skip = GameObject.Find("TalkCanvas").transform.GetChild(2).gameObject;
     }
 
     public void SkipTutorial()

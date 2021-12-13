@@ -21,14 +21,7 @@ public class Candy : MonoBehaviour
         }
         
     }
-    private void OnDisable()
-    {
-        if (p == null) return;
-        p.interactAudio.clip = p.getCandy;
-        p.interactAudio.volume = 1.0f;
-        p.interactAudio.Play();
-        p.interactAudio.volume = 0.5f;
-    }
+ 
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +37,11 @@ public class Candy : MonoBehaviour
             if (gm.isDeliverd4 != -1) return;
             // 사탕 소지여부 
             p.hasCandy = true;
+
+            p.interactAudio.clip = p.getCandy;
+            p.interactAudio.volume = 1.0f;
+            p.interactAudio.Play();
+            p.interactAudio.volume = 0.5f;
         }
         // 드론 닿으면
         if (other.CompareTag("Drone"))
@@ -52,6 +50,13 @@ public class Candy : MonoBehaviour
             Debug.Log("Drone got candy");
             // 사탕 소지여부 
             d.hasCandy = true;
+
+            p.interactAudio.clip = p.getCandy;
+            p.interactAudio.volume = 1.0f;
+            p.interactAudio.Play();
+            p.interactAudio.volume = 0.5f;
         }
+
+       
     }
 }

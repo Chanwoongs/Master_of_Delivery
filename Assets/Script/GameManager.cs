@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
     public GameObject pickableDrone;
     Vector3 target;
     public UnityEvent toSecondLand;
-    public bool isCinematicPlayed;
     Drone d;
     PickableDrone pd;
 
@@ -90,9 +89,6 @@ public class GameManager : MonoBehaviour
     public AudioSource orderAudio;
     GameObject explainDroneText;
     GameObject hambergerText;
-
-    public GameObject enemys;
-    public GameObject policeCars;
 
     private void Start()
     {
@@ -179,7 +175,6 @@ public class GameManager : MonoBehaviour
             if (toSecondLand != null)
             {
                 toSecondLand.Invoke();
-                isCinematicPlayed = true;
             }
             toSecondLand = null;
             GameObject.Find("Section4").transform.GetChild(randNum4).gameObject.SetActive(true);
@@ -288,8 +283,8 @@ public class GameManager : MonoBehaviour
         secondLand.transform.position = new Vector3(secondLand.transform.position.x, -40f, secondLand.transform.position.z);
         playerCamera.SetActive(false);
         secondLandCamera.SetActive(true);
-        enemys.SetActive(false);
-        policeCars.SetActive(false);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1000, player.transform.position.z);
+
         Invoke("changeCameraToPlayer", 12.0f);
     }
     private void changeCameraToPlayer()
@@ -303,9 +298,6 @@ public class GameManager : MonoBehaviour
         orderAudio.Play();
         explainDroneText.SetActive(false);
         hambergerText.SetActive(true);
-        enemys.SetActive(true);
-        policeCars.SetActive(true);
-        isCinematicPlayed = false;
     }
 
     public void resetTime()

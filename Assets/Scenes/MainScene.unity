@@ -26806,13 +26806,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  isCinematicPlayed: 0
   earthquackSound: {fileID: 2007346602}
   bgm: {fileID: 827782132}
   cam: {fileID: 1134669086}
   orderAudio: {fileID: 1435709542}
-  enemys: {fileID: 393648465}
-  policeCars: {fileID: 1261056652}
 --- !u!4 &827782131
 Transform:
   m_ObjectHideFlags: 0

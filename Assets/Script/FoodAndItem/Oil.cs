@@ -15,7 +15,7 @@ public class Oil: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("PlayerCar"))
+        if (other.CompareTag("PlayerCar"))
         {
             gm.setRemainingOil(15.0f);
 

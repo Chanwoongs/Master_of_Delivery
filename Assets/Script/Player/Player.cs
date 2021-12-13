@@ -124,11 +124,17 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        m_isGrounded = true;
+        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Asphalt"))
+        {
+            m_isGrounded = true;
+        }
     }
     private void OnCollisionStay(Collision collision)
     {
-        m_isGrounded = true;
+        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Asphalt"))
+        {
+            m_isGrounded = true;
+        }
     }
 
     private void OnCollisionExit(Collision collision)

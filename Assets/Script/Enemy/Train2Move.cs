@@ -12,8 +12,12 @@ public class Train2Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        p = GameObject.Find("Player").GetComponent<Player>();
-        cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            p = GameObject.Find("Player").GetComponent<Player>();
+            cc = GameObject.Find("DeliveryCar").GetComponent<CarController>();
+        }
+
         currentPos = transform.position;
     }
 

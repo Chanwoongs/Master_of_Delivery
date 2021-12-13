@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Candy : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class Candy : MonoBehaviour
     void Start()
     {
         rotSpeed = 50f;
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        p = GameObject.Find("Player").GetComponent<Player>();
-        d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            p = GameObject.Find("Player").GetComponent<Player>();
+            d = GameObject.Find("DroneParent").transform.GetChild(0).GetComponent<Drone>();
+        }
+        
     }
     private void OnDisable()
     {
+        if (p == null) return;
         p.interactAudio.clip = p.getCandy;
         p.interactAudio.volume = 1.0f;
         p.interactAudio.Play();

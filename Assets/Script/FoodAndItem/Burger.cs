@@ -18,6 +18,7 @@ public class Burger : MonoBehaviour
     }
     private void OnDisable()
     {
+        if (p == null) return;
         // 효과음 추가
         p.interactAudio.clip = p.getCandy;
         p.interactAudio.volume = 1.0f;

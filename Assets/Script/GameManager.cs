@@ -248,21 +248,35 @@ public class GameManager : MonoBehaviour
         currentOil = (int)remainingOil;
         oilTxt.text = currentOil.ToString() + "%";
 
-        if(remainingOil > 10.0f)
-            WarningText.gameObject.SetActive(false);
-
-        if (remainingOil <= 10.0f)
+        if (!cc.isDriving)
         {
-            WarningText.gameObject.SetActive(true);
+            WarningText.gameObject.SetActive(false);
+            return;
         }
 
-        if (remainingOil < 0f)
+        if (remainingOil > 10.0)
+        {
+            WarningText.gameObject.SetActive(false);
+        }
+
+        if (remainingOil > 9.5f &&remainingOil <= 10.0f && cc.isDriving)
+        {
+            WarningText.gameObject.SetActive(true);
+            Invoke("ShowWarningText", 5.0f);
+        }
+
+        if (remainingOil <= 0f)
         {
             remainingOil = 0;
             cc.setMotorForce(0);  // 자동차의 힘을 0으로
             cc.rb.velocity *= 0.1f;
             WarningText.gameObject.SetActive(false);
         }
+    }
+
+    void ShowWarningText()
+    {
+        WarningText.gameObject.SetActive(false);
     }
 
     private void UpdateDroneHP()

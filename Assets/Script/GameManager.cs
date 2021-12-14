@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour
     public GameObject enemys;
     public GameObject policeCars;
 
+    GameObject WarningText;
+
     private void Start()
     {
         pd = pickableDrone.GetComponent<PickableDrone>();
@@ -142,6 +144,7 @@ public class GameManager : MonoBehaviour
         escMenu = GameObject.Find("UICanvas").transform.GetChild(4).gameObject;
         explainDroneText = GameObject.Find("UICanvas").transform.GetChild(8).gameObject;
         hambergerText = GameObject.Find("UICanvas").transform.GetChild(6).gameObject;
+        WarningText = GameObject.Find("UICanvas").transform.GetChild(9).gameObject;
     }
 
     void Update()
@@ -245,11 +248,20 @@ public class GameManager : MonoBehaviour
         currentOil = (int)remainingOil;
         oilTxt.text = currentOil.ToString() + "%";
 
+        if(remainingOil > 10.0f)
+            WarningText.gameObject.SetActive(false);
+
+        if (remainingOil <= 10.0f)
+        {
+            WarningText.gameObject.SetActive(true);
+        }
+
         if (remainingOil < 0f)
         {
             remainingOil = 0;
             cc.setMotorForce(0);  // 자동차의 힘을 0으로
             cc.rb.velocity *= 0.1f;
+            WarningText.gameObject.SetActive(false);
         }
     }
 

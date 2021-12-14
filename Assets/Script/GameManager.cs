@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateOilgaGage()
     {
-        remainingOil -= 1.2f * Time.deltaTime;
+        remainingOil -= 1.4f * Time.deltaTime;
         oilSlider.value = remainingOil;
         currentOil = (int)remainingOil;
         oilTxt.text = currentOil.ToString() + "%";

@@ -45,7 +45,11 @@ public class Tutorial : MonoBehaviour
             if (!pause.activeSelf)
             {
                 if (SceneManager.GetActiveScene().name == "PlayerTutorial")
+                {
                     cam.setIsAction(false);
+                    Time.timeScale = 0;
+                }
+                   
                 else if (SceneManager.GetActiveScene().name == "CarTutorial" || SceneManager.GetActiveScene().name == "DroneTutorial")
                     Time.timeScale = 0;
          
@@ -54,7 +58,10 @@ public class Tutorial : MonoBehaviour
             else if (pause.activeSelf)
             {
                 if (SceneManager.GetActiveScene().name == "PlayerTutorial")
-                    cam.setIsAction(false);
+                {
+                    cam.setIsAction(true);
+                    Time.timeScale = 1;
+                }
                 else if (SceneManager.GetActiveScene().name == "CarTutorial" || SceneManager.GetActiveScene().name == "DroneTutorial")
                     Time.timeScale = 1;
               

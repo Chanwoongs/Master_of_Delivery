@@ -221,6 +221,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("GAME CLEAR");
             SceneManager.LoadScene("ClearScene");
+            Cursor.visible = true;
         }
     }
 

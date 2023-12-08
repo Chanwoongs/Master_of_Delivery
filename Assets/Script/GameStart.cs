@@ -20,6 +20,7 @@ public class GameStart : MonoBehaviour
     public void gameStart()
     {
         SceneManager.LoadScene("PlayerTutorial");
+        Cursor.visible = false;
     }
     public void GameQuit()
     {

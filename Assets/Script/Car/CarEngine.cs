@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CarEngine : MonoBehaviour
 {
+    GameManager gm;
     public Transform path;
     public float maxSteerAngle = 90f;
     public WheelCollider wheelFL;
@@ -17,8 +18,8 @@ public class CarEngine : MonoBehaviour
     private int currentNode = 0;
     // Start is called before the first frame update
     private void Start()
-    {      
-
+    {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
         p = GameObject.Find("Player").GetComponent<Player>();
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
@@ -72,14 +73,14 @@ public class CarEngine : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             Debug.Log("BUSTED");
-            SceneManager.LoadScene("FailScene");
+            gm.ProcessDead();
         }
         else if (collision.collider.CompareTag("PlayerCar"))
         {
             p.interactAudio.clip = p.boom;
             p.interactAudio.Play();
             Debug.Log("BUSTED");
-            SceneManager.LoadScene("FailScene");
+            gm.ProcessDead();
         }
     }
 }

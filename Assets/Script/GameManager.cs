@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour
         if (time < 0f)
         {
             Debug.Log("TIME OUT");
-            SceneManager.LoadScene("FailScene");
+            ProcessDead();
         }
     }
 
@@ -361,12 +361,14 @@ public class GameManager : MonoBehaviour
                 escMenu.SetActive(true);
                 cam.setIsAction(false);
                 Time.timeScale = 0;
+                Cursor.visible = true;
             }
             else
             {
                 escMenu.SetActive(false);
                 cam.setIsAction(true);
                 Time.timeScale = 1;
+                Cursor.visible = false;
             }
         }
     }
@@ -375,6 +377,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainScene");
+        Cursor.visible = false;
     }
     public void GameQuit()
     {
@@ -384,10 +387,18 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("TitleScene");
+        Cursor.visible = true;
     }
 
     public void ShowExplainDroneText()
     {
         explainDroneText.SetActive(true);
+    }
+
+    public void ProcessDead()
+    {
+        SceneManager.LoadScene("FailScene");
+
+        Cursor.visible = true;
     }
 }

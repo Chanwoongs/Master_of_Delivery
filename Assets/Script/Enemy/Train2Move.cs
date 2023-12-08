@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Train2Move : MonoBehaviour
 {
+    GameManager gm;
     Player p;
     CarController cc;
     Vector3 currentPos;
@@ -12,6 +13,7 @@ public class Train2Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         if (SceneManager.GetActiveScene().name == "MainScene")
         {
             p = GameObject.Find("Player").GetComponent<Player>();
@@ -42,7 +44,7 @@ public class Train2Move : MonoBehaviour
             p.interactAudio.clip = p.boom;
             p.interactAudio.Play();
             Debug.Log("TRAIN CRUSH");
-            SceneManager.LoadScene("FailScene");
+            gm.ProcessDead();
         }
         else if (collision.collider.CompareTag("PlayerCar"))
         {
@@ -50,7 +52,7 @@ public class Train2Move : MonoBehaviour
             p.interactAudio.clip = p.boom;
             p.interactAudio.Play();
             Debug.Log("TRAIN CRUSH");
-            SceneManager.LoadScene("FailScene");
+            gm.ProcessDead();
         }
     }
 }

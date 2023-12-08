@@ -17,6 +17,7 @@ public class TutorialPause : MonoBehaviour
         skip.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene("MainScene");
+        Cursor.visible = false;
     }
 
     public void GoTitle()
@@ -24,5 +25,6 @@ public class TutorialPause : MonoBehaviour
         skip.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene("TitleScene");
+        Cursor.visible = true;
     } 
 }

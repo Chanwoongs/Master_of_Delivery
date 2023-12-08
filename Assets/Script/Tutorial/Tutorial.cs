@@ -54,6 +54,7 @@ public class Tutorial : MonoBehaviour
                     Time.timeScale = 0;
          
                 pause.SetActive(true);
+                Cursor.visible = true;
             }
             else if (pause.activeSelf)
             {
@@ -66,6 +67,7 @@ public class Tutorial : MonoBehaviour
                     Time.timeScale = 1;
               
                 pause.SetActive(false);
+                Cursor.visible = false;
             }
         }
 

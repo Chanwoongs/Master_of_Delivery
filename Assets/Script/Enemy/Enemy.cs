@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
+    GameManager gm;
     public GameObject target;
     NavMeshAgent agent;
     Animator animator;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         nodes = new List<Transform>();
 
         for (int i = 0; i < pathTransforms.Length; i++)
@@ -44,7 +46,7 @@ public class Enemy : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             Debug.Log("CAUGHT BY HUNGRY MOSTER");
-            SceneManager.LoadScene("FailScene");
+            gm.ProcessDead();
         }
     }
     private void OnTriggerStay(Collider other)
